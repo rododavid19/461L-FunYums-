@@ -1,3 +1,4 @@
+
 Run Frontend
 Make sure you have node js and angular installed
 run cmd:
@@ -21,3 +22,7 @@ OR
 ```
 py main.py 
 ```
+=======
+# FUN-YUMS
+Website application
+
