@@ -1,6 +1,7 @@
 from flask import Blueprint
 
 #blueprint - a set of operations which can be registered on an application
+#namespace - Group resources/functions  together
 def _factory(partial_module_string, url_prefix): #creates blueprint (summation of all namespaces) to add to app
     print("actually creating blueprint")
     name = partial_module_string

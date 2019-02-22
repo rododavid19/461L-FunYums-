@@ -10,7 +10,7 @@ api = Api(funyums_blueprint_v1, version='1.0',
         description='description for api of Funyums') #creates api 
 
 
-#namespace - Group resources together
+#namespace - Group resources/functions  together
 def add_all_namespaces():
     api.add_namespace(hello_ns) #adds all namespaces (operations related to specific task) to api
    
