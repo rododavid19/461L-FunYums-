@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
