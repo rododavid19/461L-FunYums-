@@ -13,9 +13,9 @@ const routes: Routes = [
   {path: 'search', component: RecipeSearchComponent},
 
   {path: 'account-settings', component:AccountSettingsComponent},
-  {path: 'rewards', component:RewardsComponent}
+  {path: 'rewards', component:RewardsComponent},
   {path: 'recipe/:id', component: RecipeViewComponent},
-  {path: 'favorites', component: ViewFavoritesComponent}
+  {path: 'favorites', component: ViewFavoritesComponent},
 
 ];
 
