@@ -1,0 +1,5 @@
+.threeDots:after {
+  content: '\2807';
+  font-size: 40px;
+  padding-bottom: 0;
+}
