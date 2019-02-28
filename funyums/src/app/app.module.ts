@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { ViewFavoritesComponent } from './view-favorites/view-favorites.component';
+import { SplashComponent } from './splash/splash.component';
+import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeSearchComponent,
-    ViewFavoritesComponent
+    ViewFavoritesComponent,
+    SplashComponent,
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
