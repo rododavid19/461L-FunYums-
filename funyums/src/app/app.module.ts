@@ -13,7 +13,7 @@ import { ViewFavoritesComponent } from './view-favorites/view-favorites.componen
     AppComponent,
     RecipeSearchComponent,
     RecipeViewComponent,
-    ViewFavoritesComponen
+    ViewFavoritesComponent
   ],
   imports: [
     BrowserModule,
