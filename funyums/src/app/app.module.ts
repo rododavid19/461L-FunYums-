@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { AboutComponent } from './about/about.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RewardsComponent } from './rewards/rewards.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -14,6 +15,7 @@ import { ViewFavoritesComponent } from './view-favorites/view-favorites.componen
 import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { AboutService } from './about/about.service';
 
 
 
@@ -34,9 +36,12 @@ import { CreateAccountComponent } from './create-account/create-account.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [],
+  providers: [AboutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
