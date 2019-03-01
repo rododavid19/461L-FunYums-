@@ -11,12 +11,19 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { ViewFavoritesComponent } from './view-favorites/view-favorites.component';
+import { SplashComponent } from './splash/splash.component';
+import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeSearchComponent,
+    ViewFavoritesComponent,
+    SplashComponent,
+    LoginComponent,
+    CreateAccountComponent,
     AboutComponent,
     RewardsComponent,
     AccountSettingsComponent,
