@@ -8,6 +8,8 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
 import { RewardsComponent } from './rewards/rewards.component';
 import {RecipeViewComponent} from './recipe-view/recipe-view.component';
 import { ViewFavoritesComponent} from './view-favorites/view-favorites.component';
+import { LoginComponent} from './login/login.component';
+import { SplashComponent} from './splash/splash.component';
 
 
 
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'rewards', component:RewardsComponent},
   {path: 'recipe/:id', component: RecipeViewComponent},
   {path: 'favorites', component: ViewFavoritesComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'splash', component: SplashComponent},
 ];
 
 @NgModule({

@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     RewardsComponent,
     AccountSettingsComponent,
     RecipeViewComponent,
-    ViewFavoritesComponent
+    ViewFavoritesComponent,
   ],
   imports: [
     BrowserModule,

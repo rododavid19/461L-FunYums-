@@ -7,7 +7,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
-    "ngx-bootstrap": "^3.2.0"
+    "ngx-bootstrap": "^3.3.0"
   },
   "devDependencies": {},
   "scripts": {
