@@ -5,9 +5,10 @@ Website application
 
 To Run Backend
 Make sure you have these installed 
-```python
- flask 
- flask restplus 
+```
+python 3 preferably 
+flask 
+flask restplus 
  ```
 run cmd:
 ```
