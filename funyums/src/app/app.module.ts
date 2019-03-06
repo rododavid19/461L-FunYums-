@@ -16,6 +16,8 @@ import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AboutService } from './about/about.service';
+import { HelloComponent } from './hello/hello.component';
+import { HelloService } from './hello/hello.service';
 
 
 
@@ -32,6 +34,7 @@ import { AboutService } from './about/about.service';
     AccountSettingsComponent,
     RecipeViewComponent,
     ViewFavoritesComponent,
+    HelloComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { AboutService } from './about/about.service';
     ReactiveFormsModule,
 
   ],
-  providers: [AboutService],
+  providers: [AboutService,HelloService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
