@@ -10,16 +10,32 @@ import {RecipesGetterService} from '../recipes-getter.service';
 export class RecipeSearchComponent implements OnInit {
 
   recipes: Recipe[];
+  recipesShow = false;
 
   constructor(private recipeGetter: RecipesGetterService) { }
 
   ngOnInit() {
-    this.getRecipes();
+    // this.getRecipes();
   }
 
-  getRecipes(): void {
-    //console.log(this.recipes);
-    this.recipeGetter.getRecipes().subscribe(recipes => this.recipes = recipes);
+  getRecipes(searchParams: string): void {
+    if (searchParams === '') {
+      console.log('No parameters specified');
+      this.recipesShow = false;
+    } else {
+      console.log('Asking service for recipes with search parameters: ' + searchParams);
+      this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
+      if ( this.recipes.length === 0 ) {
+        this.recipesShow = false;
+      } else {
+        this.recipesShow = true;
+      }
+    }
   }
+
+  /*getRecipes(txt: string): void {
+    console.log(txt);
+    this.recipeGetter.getRecipes().subscribe(recipes => this.recipes = recipes);
+  }*/
 
 }

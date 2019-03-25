@@ -16,12 +16,12 @@ export class RecipeViewComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getRecipe();
+    //this.getRecipe();
   }
 
-  getRecipe(): void {
+  /*getRecipe(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.getter.getRecipe(id).subscribe(recipe => this.recipe = recipe);
-  }
+  }*/
 
 }

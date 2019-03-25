@@ -3,8 +3,15 @@
   recipe-search works!
 </p>
 
-<ul>
-  <li *ngFor="let recipe of recipes">
-    <span><a routerLink="/recipe/{{recipe.id}}">{{recipe.name}}</a></span>
-  </li>
-</ul>
+<input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)">
+<button (click)="getRecipes(search_bar.value)">Search!</button>
+
+<!-- this should eventually be changed to a form instead of a list because lists are ugly-->
+<div *ngIf="recipesShow">
+  <ul>
+    <li *ngFor="let recipe of recipes">
+      <!--<span><a routerLink="/recipe/{{recipe.id}}">{{recipe.name}}</a></span>-->
+      {{recipe.recipeName}}
+    </li>
+  </ul>
+</div>
