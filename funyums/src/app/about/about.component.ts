@@ -1,6 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {AboutService} from "./about.service";
 import { Router } from '@angular/router';
+import {HttpClient} from "@angular/common/http";
+import * as _ from 'lodash';
+ 
+
+
+
+interface Course {
+  description: string;
+  courseListIcon:string;
+  iconUrl:string;
+  longDescription:string;
+  url:string;
+}
+
 
 @Component({
   selector: 'app-about',
@@ -10,26 +24,93 @@ import { Router } from '@angular/router';
 export class AboutComponent implements OnInit {
 
   gitData:any;
-  gitDataNumber = 0;
+  totalCommits = 0;
+  RodoCommits = 0;
+  LoriCommits = 0;
+  AshkanCommits = 0;
+  HadarCommits = 0;
+  ShehryarCommits = 0;
+  ChristianCommits = 0;
+
+  totalIssues = 0;
+  RodoIssues = 0;
+  LoriIssues = 0;
+  AshkanIssues = 0;
+  HadarIssues = 0;
+  ShehryarIssues = 0;
+  ChristianIssues = 0;
   
-  constructor(private aboutService: AboutService, private router: Router) { }
+  constructor(private aboutService: AboutService, private router: Router, private http:HttpClient) { }
+
+  public commits = [];
+  public issues = [];
 
   ngOnInit() {
-    this.getGitData();
+    this.getGitCommits();
+    this.getGitIssues();
   }
-  getGitData(){
-    
-    this.aboutService.getAbout().subscribe((data:any) => {//data:any is what is returned
-      console.log("here");
-      this.gitData = data;
-      
-      for(var x in data){
-        this.gitDataNumber++;
+
+  getGitCommits(){
+    this.aboutService.getCommits()
+      .subscribe(data => this.commits=data, error => console.log("lol"), () => {
+      for(let entry of this.commits){
+        if(entry.author.login == "ShayAhmed"){
+          this.ShehryarCommits++;
+        }
+        else if(entry.author.login == "rododavid19"){
+          this.RodoCommits++;
+        }
+        else if(entry.author.login == "ashkanvafaee"){
+          this.AshkanCommits++;
+        }
+        else if(entry.author.login == "lgt359"){
+          this.LoriCommits++;
+        }
+        else if(entry.author.login == "HadarRoze"){
+          this.HadarCommits++;
+        }
+        else{
+          this.ChristianCommits++;
+        }
+        this.totalCommits++;
       }
-      console.log('Data requested ... ');
-      console.log(this.gitDataNumber);
-    });
-console.log("got data "+this.gitDataNumber)
+      });
   }
+
+
+  getGitIssues(){
+    this.aboutService.getIssues()
+      .subscribe(data => this.issues=data, error => console.log("lol"), () => {
+        
+          for(let entry of this.issues){
+            if(entry.state == "closed" && entry.assignee != null){
+              if(entry.assignee.login == "ShayAhmed"){
+                this.ShehryarIssues++;
+              }
+              else if(entry.assignee.login == "rododavid19"){
+                this.RodoIssues++;
+              }
+              else if(entry.assignee.login == "ashkanvafaee"){
+                this.AshkanIssues++;
+              }
+              else if(entry.assignee.login == "lgt359"){
+                this.LoriIssues++;
+              }
+              else if(entry.assignee.login == "HadarRoze"){
+                this.HadarIssues++;
+              }
+              else{
+                this.ChristianIssues++;
+              }
+              this.totalIssues++;
+            }
+          }
+
+      });
+  }
+
+
+
+  
 
 }

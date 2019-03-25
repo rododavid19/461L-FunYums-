@@ -16,8 +16,14 @@ import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AboutService } from './about/about.service';
+import {HashLocationStrategy} from '@angular/common'
+import { LocationStrategy } from '@angular/common';
+import { Route, RouterModule } from '@angular/router';
 
 
+const ROUTES: Route[] = [
+  { path: '', component: SplashComponent}
+]
 
 @NgModule({
   declarations: [
@@ -39,9 +45,14 @@ import { AboutService } from './about/about.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES),
 
   ],
-  providers: [AboutService],
+  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
+
+  
+
+
 })
 export class AppModule { }
