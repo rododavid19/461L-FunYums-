@@ -38,6 +38,7 @@ const ROUTES: Route[] = [
     AccountSettingsComponent,
     RecipeViewComponent,
     ViewFavoritesComponent,
+    HelloComponent,
   ],
   imports: [
     BrowserModule,
