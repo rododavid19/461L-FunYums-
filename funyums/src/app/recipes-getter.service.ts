@@ -17,7 +17,7 @@ export class RecipesGetterService {
   constructor(private http:HttpClient) { }
   getRecipes(searchParams: string): Observable<Recipe[]> {
     console.log('Getting recipes from Yummly using the parameter ' + searchParams);
-    const requestUrl = this.baseUrl + 's' + this.authentication + '&' + searchParams;
+    const requestUrl = this.baseUrl + 's' + this.authentication + '&q=' + searchParams;
     console.log(requestUrl);
     // let
     // this.http.get<SearchResult>(requestUrl).subscribe(result => this.result = result);
