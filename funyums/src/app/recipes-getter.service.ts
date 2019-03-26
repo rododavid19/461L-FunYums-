@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Recipe, SearchResult } from './recipe';
+import {Recipe, RecipeSearchBar, SearchResult} from './recipe';
 import {Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -15,10 +15,10 @@ export class RecipesGetterService {
   result: SearchResult;
 
   constructor(private http:HttpClient) { }
-  getRecipes(searchParams: string): Observable<Recipe[]> {
+  getRecipes(searchParams: string): Observable<RecipeSearchBar[]> {
     console.log('Getting recipes from Yummly using the parameter ' + searchParams);
     const requestUrl = this.baseUrl + 's' + this.authentication + '&q=' + searchParams;
-    console.log(requestUrl);
+    // console.log(requestUrl);
     // let
     // this.http.get<SearchResult>(requestUrl).subscribe(result => this.result = result);
     // return of(this.result.matches);
@@ -34,6 +34,7 @@ export class RecipesGetterService {
   getRecipeById(id: string): Observable<Recipe> {
     console.log('Getting recipe with ID: ' + id);
     const requestUrl = this.baseUrl + '/' + id + this.authentication;
+    console.log(requestUrl);
     return this.http.get<Recipe>(requestUrl);
   }
 }

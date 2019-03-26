@@ -1,6 +1,6 @@
 // !!! WILL NEED TO BE UPDATED
 
-export class Recipe {
+export class RecipeSearchBar {
   imageUrlBySize?: any;
   attributes?: {
     course: string[],
@@ -15,18 +15,38 @@ export class Recipe {
     Sour: number
   };
   rating: number;
-  smallImageUrls: string[];
-  sourceDisplayName: string;
-  totalTimeInSecods: number;
-  ingredients: string[];
+  smallImageUrls?: string[];
+  sourceDisplayName?: string;
+  totalTimeInSecods?: number;
+  ingredients?: string[];
   recipeName: string;
   id: string;
 }
 
 export class SearchResult {
   criteria: any;
-  matches: Recipe[];
+  matches: RecipeSearchBar[];
 }
+
+export class Recipe {
+  nutritionEstimates?: any;
+  totalTime?: string;
+  images: RecipeImage[];
+  name: string;
+  source: {
+    sourceDisplayName: string,
+    sourceSiteUrl: string,
+    sourceRecipeUrl: string
+  };
+}
+
+export class RecipeImage {
+  hostedSmallUrl?: string;
+  hostedMediumUrl?: string;
+  hostedLargeUrl?: string;
+  imageUrlBySize?: any;
+}
+
 /*export const RECIPES: Recipe[] = [
   {
     flavors: {

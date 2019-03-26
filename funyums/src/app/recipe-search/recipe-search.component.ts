@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../recipe';
+import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {RecipesGetterService} from '../recipes-getter.service';
 })
 export class RecipeSearchComponent implements OnInit {
 
-  recipes: Recipe[];
+  recipes: RecipeSearchBar[];
   recipesShow = false;
 
   constructor(private recipeGetter: RecipesGetterService) { }
@@ -25,6 +25,7 @@ export class RecipeSearchComponent implements OnInit {
     } else {
       console.log('Asking service for recipes with search parameters: ' + searchParams);
       this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
+      // need to add a condition for undefined
       if ( this.recipes.length === 0 ) {
         this.recipesShow = false;
       } else {
