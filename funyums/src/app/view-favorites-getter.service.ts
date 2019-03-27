@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Recipe, RECIPES } from './recipe';
+import { Recipe } from './recipe';
 import { users, database } from './viewFavoritesMOCK';
 import {Observable, of} from 'rxjs';
 import {forEach} from "@angular/router/src/utils/collection";
