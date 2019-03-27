@@ -19,6 +19,7 @@ import { AboutService } from './about/about.service';
 import {HashLocationStrategy} from '@angular/common'
 import { LocationStrategy } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
 
 
 const ROUTES: Route[] = [
@@ -38,6 +39,7 @@ const ROUTES: Route[] = [
     AccountSettingsComponent,
     RecipeViewComponent,
     ViewFavoritesComponent,
+    RegisterComponent,
     
   ],
   imports: [
