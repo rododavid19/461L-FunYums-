@@ -1,4 +1,10 @@
 <p>
   recipe-view works!
 </p>
-<h2>{{recipe.name}}</h2>
+<h2>{{recipe?.name}}</h2>
+<p>More details here. Flavors, time to make, picture (if available) and link to recipe</p>
+
+<div *ngIf="showImage">
+  <img src= "{{imageURL}}">
+</div>
+<a href="{{recipe?.source.sourceRecipeUrl}}">View full recipe here!</a>

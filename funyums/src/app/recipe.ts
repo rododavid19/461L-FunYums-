@@ -1,6 +1,11 @@
 // !!! WILL NEED TO BE UPDATED
 
-export class Recipe {
+export class RecipeSearchBar {
+  imageUrlBySize?: any;
+  attributes?: {
+    course: string[],
+    cuisine?: string[]
+  };
   flavors: {
     Piquant: number,
     Bitter: number,
@@ -9,12 +14,40 @@ export class Recipe {
     Salty: number,
     Sour: number
   };
-  name: string;
-  yield: number;
+  rating: number;
+  smallImageUrls?: string[];
+  sourceDisplayName?: string;
+  totalTimeInSecods?: number;
+  ingredients?: string[];
+  recipeName: string;
   id: string;
 }
 
-export const RECIPES: Recipe[] = [
+export class SearchResult {
+  criteria: any;
+  matches: RecipeSearchBar[];
+}
+
+export class Recipe {
+  nutritionEstimates?: any;
+  totalTime?: string;
+  images: RecipeImage[];
+  name: string;
+  source: {
+    sourceDisplayName: string,
+    sourceSiteUrl: string,
+    sourceRecipeUrl: string
+  };
+}
+
+export class RecipeImage {
+  hostedSmallUrl?: string;
+  hostedMediumUrl?: string;
+  hostedLargeUrl?: string;
+  imageUrlBySize?: any;
+}
+
+/*export const RECIPES: Recipe[] = [
   {
     flavors: {
       Piquant: 0,
@@ -80,4 +113,4 @@ export const RECIPES: Recipe[] = [
     yield: 0,
     id: 'ivy-salad'
   }
-];
+];*/
