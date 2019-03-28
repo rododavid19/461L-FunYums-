@@ -26,7 +26,7 @@ export const RECIPES: Recipe[] = [
     },
     name: 'Batburger',
     yield: 0,
-    id: 'batburger'
+    id: 'batburger',
   },
   {
     flavors: {
@@ -52,7 +52,7 @@ export const RECIPES: Recipe[] = [
     },
     name: 'Robin Nuggets',
     yield: 0,
-    id: 'robinnuggets'
+    id: 'robinnuggets',
   },
   {
     flavors: {
@@ -65,7 +65,7 @@ export const RECIPES: Recipe[] = [
     },
     name: 'Riddle-Me-Fish',
     yield: 0,
-    id: 'riddle-me-fish'
+    id: 'riddle-me-fish',
   },
   {
     flavors: {
@@ -78,6 +78,6 @@ export const RECIPES: Recipe[] = [
     },
     name: 'Ivy Salad',
     yield: 0,
-    id: 'ivy-salad'
+    id: 'ivy-salad',
   }
 ];
