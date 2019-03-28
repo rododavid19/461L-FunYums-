@@ -26,7 +26,7 @@ export class RecipeSearchComponent implements OnInit {
       console.log('Asking service for recipes with search parameters: ' + searchParams);
       this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
-      if ( this.recipes.length === 0 ) {
+      if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
       } else {
         this.recipesShow = true;
