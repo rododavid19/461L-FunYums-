@@ -9,6 +9,7 @@ import { ViewFavoritesComponent} from './view-favorites/view-favorites.component
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SplashComponent } from './splash/splash.component';
+import { RegisterComponent } from './register/register.component';
 
 
 // we need a dashboard component to add here
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'favorites', component: ViewFavoritesComponent},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'splash', component: SplashComponent}
+  {path: 'splash', component: SplashComponent},
+  {path:'register',component:RegisterComponent},
 
 ];
 
