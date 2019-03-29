@@ -59,7 +59,7 @@ export class RecipeImage {
     },
     name: 'Batburger',
     yield: 0,
-    id: 'batburger'
+    id: 'batburger',
   },
   {
     flavors: {
@@ -85,7 +85,7 @@ export class RecipeImage {
     },
     name: 'Robin Nuggets',
     yield: 0,
-    id: 'robinnuggets'
+    id: 'robinnuggets',
   },
   {
     flavors: {
@@ -98,7 +98,7 @@ export class RecipeImage {
     },
     name: 'Riddle-Me-Fish',
     yield: 0,
-    id: 'riddle-me-fish'
+    id: 'riddle-me-fish',
   },
   {
     flavors: {
@@ -111,6 +111,6 @@ export class RecipeImage {
     },
     name: 'Ivy Salad',
     yield: 0,
-    id: 'ivy-salad'
+    id: 'ivy-salad',
   }
 ];*/
