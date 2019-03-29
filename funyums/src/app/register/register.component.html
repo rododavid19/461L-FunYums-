@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <br>
-<div class = "container">
+
+<p id = "alert" style = "display: none;color: #FF5C5C">Username or Password incorrect</p>
+<div class = "container" style="color: #444444;font-family:  Roboto;">
 
 
     <form #login = "ngForm" class = "login-form">
@@ -31,11 +33,8 @@
 
 
       <br>
-      <button (click)="this.onSubmit()" type="submit">Submit</button>
+      <button (click)="this.onSubmit()" type="submit" style="background-color:  #F7882F">Submit</button>
     </form>
-    <div class="result">We have  users.</div>
-    <ul><li *ngFor = "let user of Users">{{user}}</li></ul>
-    
 
 
 

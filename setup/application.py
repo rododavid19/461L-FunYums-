@@ -20,10 +20,15 @@ def hello_world():
 
 def create_app(): #creates flask app
     print("inside create_app")
-    
-    app.wsgi_app = ProxyFix(app.wsgi_app)#setup thing, dont worry about it
-    cors = CORS(app, resources={r"/*": {"origins": "*"}})#needed for cross origin stuff -> used to allow data transfer between frontend and backend
+
     retgister_blueprints(app) #adds blueprint to app
+    #app.wsgi_app = ProxyFix(app.wsgi_app)#setup thing, dont worry about it
+    cors = CORS(app, resources={r"/*": {"origins": "*"}},allow_headers=[
+        "Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
+        supports_credentials=True)#needed for cross origin stuff -> used to allow data transfer between frontend and backend
+    #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    #retgister_blueprints(app) #adds blueprint to app
+
     return app
 
 

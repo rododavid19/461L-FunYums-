@@ -20,6 +20,11 @@ import {HashLocationStrategy} from '@angular/common'
 import { LocationStrategy } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { LoginService } from './login/login.service';
+import { RegisterService } from './register/register.service';
+import { CookieService } from 'ngx-cookie-service';
+
+
 
 
 const ROUTES: Route[] = [
@@ -40,6 +45,7 @@ const ROUTES: Route[] = [
     RecipeViewComponent,
     ViewFavoritesComponent,
     RegisterComponent,
+  
     
   ],
   imports: [
@@ -49,9 +55,11 @@ const ROUTES: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
+  
+  
 
   ],
-  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy},LoginService,RegisterService,CookieService],
   bootstrap: [AppComponent]
 
   
