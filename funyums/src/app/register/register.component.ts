@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Person} from './Person';
 import { Router } from '@angular/router';
 import {RegisterService} from './register.service'
-import { CookieService } from 'ngx-cookie-service';
-import { AlertsModule } from 'angular-alert-module';
+//import { CookieService } from 'ngx-cookie-service';
+//import { AlertsModule } from 'angular-alert-module';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  constructor(private router: Router,private rs:RegisterService,private cs: CookieService,){} 
+  constructor(private router: Router,private rs:RegisterService){} //private cs: CookieService
 
       
 
@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
         document.getElementById("alert").style.display = "block";
         
       }else{
-        this.cs.set("user_name",res["user_name"]);
-        this.cs.set("full_name",res["full_name"]);
+        // this.cs.set("user_name",res["user_name"]);
+        // this.cs.set("full_name",res["full_name"]);
         this.router.navigateByUrl("/splash");
       }
     

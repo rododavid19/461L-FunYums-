@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from './login.service';
-import { CookieService } from 'ngx-cookie-service';
+//import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,private ls:LoginService,private cs: CookieService) { }
+  constructor(private router: Router,private ls:LoginService) { }//private cs: CookieService
 
   username = null;
 
@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit {
         document.getElementById("alert").style.display = "block";
       
       }else{
-        this.cs.set("user_name",res["user_name"])
-        this.cs.set("full_name",res["full_name"])
+        // this.cs.set("user_name",res["user_name"])
+        // this.cs.set("full_name",res["full_name"])
         //var splash = "/splash"
 
         this.router.navigateByUrl("/splash");

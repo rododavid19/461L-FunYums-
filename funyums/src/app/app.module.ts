@@ -25,7 +25,7 @@ import { Route, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
-import { CookieService } from 'ngx-cookie-service';
+//import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -63,7 +63,7 @@ const ROUTES: Route[] = [
   
 
   ],
-  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy},LoginService,RegisterService,CookieService],
+  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy},LoginService,RegisterService],
   bootstrap: [AppComponent]
 
 
