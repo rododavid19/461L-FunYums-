@@ -28,5 +28,11 @@ body {
     font-size: 45px;
   }
 
+  .glyphicon {
+    font-size: 40px;
+  }
+  .col-md-6 {
+    text-align: center; 
+  }
 
 
