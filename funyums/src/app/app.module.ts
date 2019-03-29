@@ -6,9 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { AboutComponent } from './about/about.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { RewardsComponent } from './rewards/rewards.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { ViewFavoritesComponent } from './view-favorites/view-favorites.component';
 import { RecipeSubmitComponent } from './recipe-submit/recipe-submit.component';
 
+import { SplashComponent } from './splash/splash.component';
+import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { AboutService } from './about/about.service';
+import {HashLocationStrategy} from '@angular/common'
+import { LocationStrategy } from '@angular/common';
+import { Route, RouterModule } from '@angular/router';
+
+
+const ROUTES: Route[] = [
+  { path: '', component: SplashComponent}
+]
 
 @NgModule({
   declarations: [
@@ -16,14 +34,31 @@ import { RecipeSubmitComponent } from './recipe-submit/recipe-submit.component';
     RecipeSearchComponent,
     ViewFavoritesComponent,
     RecipeSubmitComponent
+    SplashComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    AboutComponent,
+    RewardsComponent,
+    AccountSettingsComponent,
+    RecipeViewComponent,
+    ViewFavoritesComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES),
+
   ],
-  providers: [],
+  providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
+
+  
+
+
 })
 export class AppModule { }
