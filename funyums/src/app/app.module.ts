@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 import { ViewFavoritesComponent } from './view-favorites/view-favorites.component';
+import { RecipeSubmitComponent } from './recipe-submit/recipe-submit.component';
+
 import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -36,6 +39,7 @@ const ROUTES: Route[] = [
     AppComponent,
     RecipeSearchComponent,
     ViewFavoritesComponent,
+    RecipeSubmitComponent
     SplashComponent,
     LoginComponent,
     CreateAccountComponent,
@@ -52,6 +56,7 @@ const ROUTES: Route[] = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
