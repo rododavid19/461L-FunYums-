@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { AboutComponent } from './about/about.component';
-
 import { RewardsComponent } from './rewards/rewards.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
@@ -14,6 +15,8 @@ import { ViewFavoritesComponent } from './view-favorites/view-favorites.componen
 import { SplashComponent } from './splash/splash.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+
+
 
 
 @NgModule({
@@ -28,14 +31,16 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     RewardsComponent,
     AccountSettingsComponent,
     RecipeViewComponent,
-    ViewFavoritesComponent
+    ViewFavoritesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import {Observable, of} from 'rxjs';
 export class RecipesGetterService {
 
   constructor() { }
+
   getRecipes(): Observable<Recipe[]> {
     return of(RECIPES);
 

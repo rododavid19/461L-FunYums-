@@ -4,10 +4,16 @@
   "description": "Website application",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "boostrap": "^2.0.0",
     "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "ngx-bootstrap": "^3.2.0"
+    "ngx-bootstrap": "^3.3.0",
+    "npm": "^6.9.0"
+
+
   },
   "devDependencies": {},
   "scripts": {
@@ -25,3 +31,4 @@
   },
   "homepage": "https://github.com/rododavid19/461L-FunYums-#readme"
 }
+
