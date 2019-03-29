@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { AboutComponent } from './about/about.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { RewardsComponent } from './rewards/rewards.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -33,7 +33,7 @@ const ROUTES: Route[] = [
     AppComponent,
     RecipeSearchComponent,
     ViewFavoritesComponent,
-    RecipeSubmitComponent
+    RecipeSubmitComponent,
     SplashComponent,
     LoginComponent,
     CreateAccountComponent,
@@ -42,13 +42,13 @@ const ROUTES: Route[] = [
     AccountSettingsComponent,
     RecipeViewComponent,
     ViewFavoritesComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
@@ -57,7 +57,7 @@ const ROUTES: Route[] = [
   providers: [AboutService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 
-  
+
 
 
 })
