@@ -54,28 +54,28 @@ export class RegisterComponent implements OnInit {
 
     }; 
     
-    this.data =data2
-    this.Users.push(data2);
-    this.submitted = true;
-    this.rs.register(data2).subscribe(res =>{
-      this.responce = res;
+    // this.data =data2
+    // this.Users.push(data2);
+    // this.submitted = true;
+    // this.rs.register(data2).subscribe(res =>{
+    //   this.responce = res;
 
-      if(res["status code"] == "500"){
-        console.log("USER EXISTS");
-        document.getElementById("alert").style.display = "block";
+    //   if(res["status code"] == "500"){
+    //     console.log("USER EXISTS");
+    //     document.getElementById("alert").style.display = "block";
         
-      }else{
-        // this.cs.set("user_name",res["user_name"]);
-        // this.cs.set("full_name",res["full_name"]);
-        this.router.navigateByUrl("/splash");
-      }
+    //   }else{
+    //     // this.cs.set("user_name",res["user_name"]);
+    //     // this.cs.set("full_name",res["full_name"]);
+    //     this.router.navigateByUrl("/splash");
+    //   }
     
-    },err => {
-      console.log("Error occured: ", err);
-    });
+    // },err => {
+    //   console.log("Error occured: ", err);
+    // });
 
 
-    console.log(data2)
+    // console.log(data2)
     
     // if(this.registerForm.invalid){
     //   return;
