@@ -1,30 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { database } from '../viewFavoritesMOCK';
-import {ViewFavoritesGetterService} from "../view-favorites-getter.service";
+import {ApiServiceService} from '../../../src/app/api-service/api-service.service';
 
 @Component({
   selector: 'app-view-favorites',
   templateUrl: './view-favorites.component.html',
   styleUrls: ['./view-favorites.component.css']
+
 })
+
+
 export class ViewFavoritesComponent implements OnInit {
 
-  members : database;
 
-  constructor(private favoritesGetter: ViewFavoritesGetterService) {
-
-
-
-  }
+  constructor(private recipeGetterDB: ApiServiceService) { }
+  //myHero = this.heroes[0];
 
   ngOnInit() {
-    this.getFavorites();
+    this.getAllRecipesDB()
   }
 
-  getFavorites(): void {
-    this.favoritesGetter.getUsers().subscribe(member => this.members);
+  getAllRecipesDB(): String {
+    return "FFF";
   }
-
 
 
 }
+

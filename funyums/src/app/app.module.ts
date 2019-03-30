@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +33,7 @@ import { RegisterService } from './register/register.service';
 
 
 
+
 const ROUTES: Route[] = [
   { path: '', component: SplashComponent}
 ]
@@ -49,13 +53,15 @@ const ROUTES: Route[] = [
     RecipeViewComponent,
     ViewFavoritesComponent,
     RegisterComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+ //   RouterModule
+//  ],
+//  providers: [AppComponent],
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),

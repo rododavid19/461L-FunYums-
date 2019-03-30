@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { SplashComponent } from './splash/splash.component';
 import { RegisterComponent } from './register/register.component';
 
+
 // we need a dashboard component to add here
 const routes: Routes = [
   {path: 'search', component: RecipeSearchComponent},
@@ -25,7 +26,6 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'splash', component: SplashComponent},
   {path:'register',component:RegisterComponent},
-
 ];
 
 @NgModule({
