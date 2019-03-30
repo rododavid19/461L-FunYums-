@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
 
     }; 
-    
+    this.router.navigateByUrl("/splash");
     // this.data =data2
     // this.Users.push(data2);
     // this.submitted = true;
