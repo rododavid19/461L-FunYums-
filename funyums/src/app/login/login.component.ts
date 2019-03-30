@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {LoginService} from './login.service';
 //import { CookieService } from 'ngx-cookie-service';
 
-
+declare function myFunction():any;
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   cookieValue = "UNKNOWN"
 
   ngOnInit() {
-
+    myFunction();
     // this.alerts.setMessage('Username or password incorrect','error');
     // this.alerts.setMessage('Success!','success');
     
