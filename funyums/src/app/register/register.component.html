@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<br>
+
+<p id = "alert" style = "display: none;color: #FF5C5C">Username or Password incorrect</p>
+<div class = "container" style="color: #444444;font-family:  Roboto;">
+
+
+    <form #login = "ngForm" class = "login-form">
+
+      <h1>Register</h1>
+      <p>Enter your information</p>
+      <hr>
+
+      <div class = "form-group">
+          <label for="name">Name</label>
+          <input class = "form-control" type="text" id="name" #name = "ngModel" name = "name" placeholder="Andy Dwyer" [(ngModel)]="this.full_name" ngModel required #name>
+  
+      </div>
+      <div class = "section">
+          <label for="uname">Username</label>
+          <input class = "form-control" type = "text" id = "uname" placeholder="Johnny Karate" #uname = "ngModel" name = "uname" [(ngModel)]="this.username" ngModel required #name>
+      </div>
+
+      <div class = "section">
+          <label for="uemail" class="label">Email (not required)</label>
+          <input class = "form-control" type = "text" id = "uemail" placeholder="bertMacklin@fbimail.com" #uemail = "ngModel" name = "uemail" [(ngModel)]="this.email" ngModel #name>
+      </div>
+
+      <div class = "section">
+          <label for="pswd" class="label">Password</label>
+          <input class = "form-control" type = "text" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #name>
+      </div>
+
+
+      <br>
+      <button (click)="this.onSubmit()" type="submit" style="background-color:  #F7882F">Submit</button>
+    </form>
+
+
+
+</div>
+

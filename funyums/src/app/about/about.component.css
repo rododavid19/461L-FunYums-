@@ -1,36 +1,13 @@
 
-h1 {
-    color: orange;
-    text-align: center;
-    margin-bottom: 35px; 
-}
-
-#GoalParagraph {
-    text-align: center;
-    margin-right: 100px;
-    margin-left: 100px;
-    margin-bottom: 10px; 
-}
-
-#TeamToucan {
-    margin-bottom: 25px; 
-}
 
 h3 {
     color: #191970;
     text-align: center;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 40px; 
+    font-family: 'Montserrat', sans-serif; 
 }
-
-p{
-    text-align: justify;
-    text-align-last: center;    
-    margin-right: 200px;
-    margin-left: 200px;
-    margin-top: 0px; 
-    margin-bottom: 30px; 
-}
-
 
 h4{
     text-align: center; 
@@ -44,4 +21,45 @@ h4{
     width: 50%;
   }
 
+  #GOAL .jumbotron {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  #GOAL .jumbotron h2 {
+    color: navy;
+    font-size: 45px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold; 
+  }
+  #GOAL .jumbotron h1{
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .team-content h3{
+    color: #FF8C00;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px; 
+    font-family: 'Montserrat', sans-serif; 
+  }
+
+  .team-content p{
+    text-align: center;
+  }
+ 
+  .other-color{
+    background:#DFDCE3; 
+  } 
+  .other-color p{
+    text-align: center;
+    font-size: 18px; 
+  }
+  .stats-color{
+    background: #F8EEE7
+  }
+  .stats-color p{
+    text-align: center;
+  }
 

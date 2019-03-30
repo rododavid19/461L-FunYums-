@@ -1,9 +1,22 @@
-<p>
-  recipe-search works!
-</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<ul>
-  <li *ngFor="let recipe of recipes">
-    <span><a routerLink="/recipe/{{recipe.id}}">{{recipe.name}}</a></span>
-  </li>
-</ul>
+<br>
+<input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)">
+<button (click)="getRecipes(search_bar.value)">Search!</button>
+
+<!--
+More search options:
+- checkbox: only show recipes that can be made with present ingredients (requires database)
+- Exclude include cuisines (probably check boxes)
+- Exclude foods by allegic values
+- Range of time needed to make dish
+- rating
+- sort by rating? don't know how to do this
+- clear search criteria
+-->
+
+<div *ngIf="recipesShow">
+  <div *ngFor="let recipe of recipes">
+    <span><a routerLink="/recipe/{{recipe.id}}">{{recipe.recipeName}}</a></span>
+  </div>
+</div>
