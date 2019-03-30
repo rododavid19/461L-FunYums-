@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +7,19 @@ import { map } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'funyums';
-  private apiURL = "";
 
 
+  selectedLevel;
+  data:Array<Object> = [
+    {id: 0, name: "name1"},
+    {id: 1, name: "name2"}
+  ];
 
+  selected(){
+    alert(this.selectedLevel.name)
+  }
 }
+
+
+
 
