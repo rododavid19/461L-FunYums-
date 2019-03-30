@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
