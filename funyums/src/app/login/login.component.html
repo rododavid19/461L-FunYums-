@@ -1,37 +1,38 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 <br>
+
+
+
 <div class = "container" style="color: #444444;">
     
 
 
-<form #login = "ngForm" class = "login-form">
-
-    <h1>Login</h1>
-    <p>Enter your information</p>
-    <hr>
-
-    <div class = "section">
-        <strong><label for="uname">Username</label></strong>
-        <input class = "form-control" type = "text" id = "uname" placeholder="Johnny Karate" #uname = "ngModel" name = "uname" [(ngModel)]="this.username" ngModel required #uname>
+    <form #login = "ngForm" class = "login-form">
+    
+        <h1>Login</h1>
+        <p>Enter your information</p>
+        <hr>
+    
+        <div class = "section">
+            <strong><label for="uname">Username</label></strong>
+            <input class = "form-control" type = "text" id = "uname" placeholder="Johnny Karate" #uname = "ngModel" name = "uname" [(ngModel)]="this.username" ngModel required #uname>
+        </div>
+    
+        <br>
+        <div class = "section">
+            <strong><label for="pswd" class="label">Password</label></strong>
+            <input placeholder="**********" class = "form-control" type = "text" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #uname>
+        </div>
+    
+    
+        <br>
+        <p id = "alert" style = "display: none;color: #FF5C5C">Username or Password incorrect</p>
+        <button (click)="this.onSubmit()" type="submit" style="background-color: black">Submit</button>
+      </form>
+      <br>
+      
+      <a routerLink="/register">Register Now</a>
+    
+    
     </div>
-
-    <br>
-    <div class = "section">
-        <strong><label for="pswd" class="label">Password</label></strong>
-        <input placeholder="**********" class = "form-control" type = "text" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #uname>
-    </div>
-
-
-    <br>
-    <p id = "alert" style = "display: none;color: #FF5C5C">Username or Password incorrect</p>
-    <button (click)="this.onSubmit()" type="submit" style="background-color: black">Submit</button>
-  </form>
-  <br>
-  
-  <a routerLink="/register">Register Now</a>
-
-
-</div>
-
-

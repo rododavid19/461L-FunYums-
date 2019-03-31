@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   cookieValue = "UNKNOWN"
 
   ngOnInit() {
-    myFunction();
+    //myFunction();
     // this.alerts.setMessage('Username or password incorrect','error');
     // this.alerts.setMessage('Success!','success');
     
