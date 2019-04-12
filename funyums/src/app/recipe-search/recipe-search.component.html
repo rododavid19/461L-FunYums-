@@ -14,7 +14,7 @@
   <input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)" value="{{initSearch}}">
   <button (click)="getRecipes(search_bar.value)">Search!</button>
   <br>
-  <input #use_my_ing type="checkbox">
+  <input #use_my_ing type="checkbox" (click)="onlyMyIng = use_my_ing.checked">
   <label>Do not show recipes that require ingredients I don't have</label>
   <br>
   <p style="color: cornflowerblue" *ngIf="!showAdvance" (click)="showAdvance = true">Show more filters</p> <!--todo cursor should change on hover-->

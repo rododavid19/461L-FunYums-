@@ -8,6 +8,13 @@ import {RecipesGetterService} from '../recipes-getter.service';
   styleUrls: ['./recipe-search.component.css']
 })
 export class RecipeSearchComponent implements OnInit {
+  /* todo
+  * 1) make calls to yummly dictionary API to verify the inputs in filter
+  * 2) need to save results from API because they're needed for making the GET call
+  * 3) need to add functionality of filters
+  * 4) need to save filters to localStorage as well
+  * */
+
 
   recipes: RecipeSearchBar[];
   recipesShow = false;
@@ -30,7 +37,6 @@ export class RecipeSearchComponent implements OnInit {
       this.initSearch = '';
     }
     if(this.initSearch !== '' && this.initSearch != null) {
-      console.log(this.initSearch);
       this.getRecipes(this.initSearch);
     }
   }
