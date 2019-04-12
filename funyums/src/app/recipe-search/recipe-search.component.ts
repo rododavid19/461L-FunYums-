@@ -19,11 +19,20 @@ export class RecipeSearchComponent implements OnInit {
   allergies: string[];
   dietsExist = false;
   diets: string[];
+  initSearch: string;
 
   constructor(private recipeGetter: RecipesGetterService) { }
 
   ngOnInit() {
-    // this.getRecipes();
+    this.initSearch = JSON.parse(localStorage.getItem('SearchBar'));
+    localStorage.removeItem('SearchBar');
+    if(this.initSearch === undefined){
+      this.initSearch = '';
+    }
+    if(this.initSearch !== '' && this.initSearch != null) {
+      console.log(this.initSearch);
+      this.getRecipes(this.initSearch);
+    }
   }
 
   getRecipes(searchParams: string): void {
@@ -31,6 +40,7 @@ export class RecipeSearchComponent implements OnInit {
       console.log('No parameters specified');
       this.recipesShow = false;
     } else {
+      this.initSearch = searchParams;
       console.log('Asking service for recipes with search parameters: ' + searchParams);
       this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
@@ -103,4 +113,10 @@ export class RecipeSearchComponent implements OnInit {
     }
   }
 
+  saveLocalState(): void{
+    if(this.initSearch !== ''){
+      localStorage.removeItem('SearchBar');
+      localStorage.setItem('SearchBar', JSON.stringify(this.initSearch));
+    }
+  }
 }

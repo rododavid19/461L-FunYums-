@@ -11,7 +11,7 @@
     
     <strong><i>FunYums!</i></strong>
   </h1>
-  <input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)">
+  <input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)" value="{{initSearch}}">
   <button (click)="getRecipes(search_bar.value)">Search!</button>
   <br>
   <input #use_my_ing type="checkbox">
@@ -66,7 +66,7 @@ More search options:
 <br>
 <div *ngIf="recipesShow">
   <div *ngFor="let recipe of recipes">
-    <span><a routerLink="/recipe/{{recipe.id}}">{{recipe.recipeName}}</a></span>
+    <span><a routerLink="/recipe/{{recipe.id}}" (click)="saveLocalState()">{{recipe.recipeName}}</a></span>
   </div>
 </div>
 </div>
