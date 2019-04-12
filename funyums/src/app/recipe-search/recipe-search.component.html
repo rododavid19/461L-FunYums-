@@ -13,6 +13,45 @@
   </h1>
   <input #search_bar type ="text" (keyup.enter)="getRecipes(search_bar.value)">
   <button (click)="getRecipes(search_bar.value)">Search!</button>
+  <br>
+  <input #use_my_ing type="checkbox">
+  <label>Do not show recipes that require ingredients I don't have</label>
+  <br>
+  <p style="color: cornflowerblue" *ngIf="!showAdvance" (click)="showAdvance = true">Show more filters</p> <!--todo cursor should change on hover-->
+  <div *ngIf="showAdvance">
+    <p style="color: cornflowerblue" (click)="showAdvance= false">Back to basics</p> <!--todo a function to reset filters here--> <!--todo cursor should change on hover-->
+    <label>Do not show me recipes with: </label>
+    <input #excluded_ing type="text" (keyup.enter)="addIng(excluded_ing.value)">
+    <button (click)="addIng(excluded_ing.value)">Add</button>
+    <br>
+    <label>Only show recipes that accommodate an allergy to: </label>
+    <input #allergies_inp type="text" (keyup.enter)="addAllergy(allergies_inp.value)">
+    <button (click)="addAllergy(allergies_inp.value)">Add</button>
+    <br>
+    <label>Only show recipes that accommodate to these diets: </label>
+    <input #diets_inp type="text" (keyup.enter)="addDiet(diets_inp.value)">
+    <button (click)="addDiet(diets_inp.value)">Add</button>
+    <br>
+    <div *ngIf="ings2excludeExist">
+      <label>Ingredients to exclude: </label>
+      <button *ngFor="let ing of ings2exclude" (click)="removeIng(ing)">
+        {{ing}}
+      </button>
+    </div>
+    <div *ngIf="allergiesExist">
+      <label>Allergies to consider: </label>
+      <button *ngFor="let alg of allergies" (click)="removeAllergy(alg)">
+        {{alg}}
+      </button>
+    </div>
+    <div *ngIf="dietsExist">
+      <label>Ingredients to exclude: </label>
+      <button *ngFor="let diet of diets" (click)="removeDiet(diet)">
+        {{diet}}
+      </button>
+    </div>
+  </div>
+
 
 <!--
 More search options:
