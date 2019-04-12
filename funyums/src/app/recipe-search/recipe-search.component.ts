@@ -13,6 +13,8 @@ export class RecipeSearchComponent implements OnInit {
   * 2) need to save results from API because they're needed for making the GET call
   * 3) need to add functionality of filters
   * 4) need to save filters to localStorage as well
+  * 5) add pages (should also be saved to local storage)
+  * 6) validity service
   * */
 
 
