@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from './login.service';
 //import { CookieService } from 'ngx-cookie-service';
+import {Policy} from './policy';
+import { Alert } from 'selenium-webdriver';
 
 declare function myFunction():any;
 
@@ -12,7 +14,7 @@ declare function myFunction():any;
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,private ls:LoginService) { }//private cs: CookieService
+  constructor(private router: Router,private loginService:LoginService) { }//private cs: CookieService
 
   username = null;
 
@@ -22,68 +24,28 @@ export class LoginComponent implements OnInit {
   cookieValue = "UNKNOWN"
 
   ngOnInit() {
-    //myFunction();
-    // this.alerts.setMessage('Username or password incorrect','error');
-    // this.alerts.setMessage('Success!','success');
-    
-
   }
 
+  public Policy = [];
 
   onSubmit(){
     
-    console.log("This is person")
-    var uname = this.username
-    var x = document.getElementById("alert");
+    console.log("This is person");
+    this.loginService.getData()
+      .subscribe(data => this.Policy=data, error => console.log("lol"), () => {
+        console.log(this.Policy);
 
-    x.style.display = "block";
-    console.log(uname)
-    var data2 = {
-      uname :{
-      
-      'username': this.username,
-      'password':this.password
-      }
-    }; 
-    this.data =data2
-    //createAlert();
-    this.ls.register(data2).subscribe(res =>{
-      this.responce = res;
-      if(res["status code"] == "404"){
-        console.log("USER NO FOUND");
-        document.getElementById("alert").style.display = "block";
-      }
-     
-      else if(res["status code"] == "500"){
-        console.log("ERROR")
-        document.getElementById("alert").style.display = "block";
-      
-      }else{
-        // this.cs.set("user_name",res["user_name"])
-        // this.cs.set("full_name",res["full_name"])
-        //var splash = "/splash"
-
-        this.router.navigateByUrl("/splash");
-      }
-    
-    },err => {
-      console.log("Error occured: ", err);
-    });
-
-
-    console.log(data2)
-    
-    // if(this.registerForm.invalid){
-    //   return;
-    // }
-
-
-    //console.log(data)
-    //this.person = new Person(data.name,data.username,data.password);
-    //if(data){
-      //this.Users.push(this.person)
-    //}
+        for(let entry of this.Policy){
+              if(entry.username = this.username && entry.password == this.password){
+              alert("Successfully logged in");
+              this.router.navigateByUrl("/splash");
+              return;
+            }
+        }
+        alert("Invalid username or password");
+      });
   }
+  
 
 
 
