@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Policy} from '../login/policy';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class SplashComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    console.log(Policy.username);
   }
 
 }

@@ -3,6 +3,7 @@ import {Recipe, RecipeImage} from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
+import {Policy} from '../login/policy';
 
 @Component({
   selector: 'app-recipe-view',

@@ -1,6 +1,7 @@
   import { Component, OnInit } from '@angular/core';
   import { Recipe } from '../recipe';
   import {RecipesGetterService} from '../recipes-getter.service';
+  import {Policy} from '../login/policy';
 
 @Component({
   selector: 'app-recipe-submit',

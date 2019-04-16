@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
               if(entry.username = this.username && entry.password == this.password){
               alert("Successfully logged in");
               this.router.navigateByUrl("/splash");
+              Policy.username = entry.username;
+              Policy.password = entry.password;
               return;
             }
         }

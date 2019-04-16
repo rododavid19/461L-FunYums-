@@ -1,4 +1,9 @@
+
+import { Injectable } from '@angular/core';
+
+@Injectable() 
 export  class  Policy {
-    username:  String;
-    password:  String;
+    static username:  String;
+    static password:  String;
+
 }
