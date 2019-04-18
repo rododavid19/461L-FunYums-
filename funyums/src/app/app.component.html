@@ -4,17 +4,20 @@
   &nbsp;
   <a routerLink = "/rewards"> REWARDS PAGE</a>
   &nbsp;
-  <a routerLink = "/account-settings"> ACCOUNTS SETTING</a>
+  <a *ngIf="ref.displayLogout" routerLink = "/account-settings"> ACCOUNTS SETTING</a>
   &nbsp;
-  <a routerLink="/favorites">FAVORITE RECIPES</a>
+  <a *ngIf="ref.displayLogout" routerLink="/favorites">FAVORITE RECIPES</a>
   &nbsp;
-  <a routerLink="/submit">SUBMIT RECIPES</a>
+  <a *ngIf="ref.displayLogout" routerLink="/submit">SUBMIT RECIPES</a>
   <a routerLink="/about">ABOUT US</a>
   &nbsp;
-  <a routerLink="/login">LOGIN</a>
+  <a *ngIf="ref.displayLogin" routerLink="/login">LOGIN</a>
+  &nbsp;
+  <a *ngIf="ref.displayLogout" routerLink="/logout">LOGOUT</a>
   &nbsp;
   <a routerLink="/splash">HOME</a>
 </nav>
+
 <div>
 <router-outlet></router-outlet>
 </div>

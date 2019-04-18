@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { database } from '../viewFavoritesMOCK';
 import {ViewFavoritesGetterService} from "../view-favorites-getter.service";
-import {Policy} from '../login/policy';
 
 @Component({
   selector: 'app-view-favorites',

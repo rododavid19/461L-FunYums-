@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Person} from './Person';
 import { Router } from '@angular/router';
 import {RegisterService} from './register.service'
-import {Policy} from './policy'
+import {person} from '../person'
 import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
 import { Alert } from 'selenium-webdriver';
 
@@ -17,31 +16,22 @@ import { Alert } from 'selenium-webdriver';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  Users= [];
-  person:Person;
-  submitted= false;
 
-  policies: Policy[];
-  selectedPolicies: Policy = {username:null, password:null};
 
 
   constructor(private registerService: RegisterService, private router: Router,private rs:RegisterService, private http: HttpClient){} //private cs: CookieService
 
-      
-  
-   full_name = null;
-   username = null;
-   email = null;
-   password = null;
-   data:any;
-   responce:any;
   ngOnInit() {
 
   }
-  public Policy = [];
+  public username;
+  public password;
+  public email;
+  public fullname;
+  public rank = 1;
+  public favorites = null;
 
 
-  writetoJSON(){}
   
   onSubmit(){
     console.log("This is person");
@@ -51,14 +41,18 @@ export class RegisterComponent implements OnInit {
 
       this.http.post("http://backend-237004.appspot.com/api/username_password",
       {
-      "username":  this.username,
-      "password":  this.password,
+      "username"  :   this.username,
+      "password"  :   this.password,
+      "email"     :   this.email,
+      "rank"      :   this.rank,
+      "favorites" :   this.favorites,
+      "fullname"  :   this.fullname,
       })
       .subscribe(
       data  => {
       console.log("POST Request is successful ", data);
       alert("Successfully Registered");
-      this.router.navigateByUrl("/splash");
+      this.router.navigateByUrl("/login");
       },
       error  => {
       

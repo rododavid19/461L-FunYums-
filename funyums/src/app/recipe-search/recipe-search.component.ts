@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
-import {Policy} from '../login/policy';
 
 @Component({
   selector: 'app-recipe-search',
@@ -9,14 +8,39 @@ import {Policy} from '../login/policy';
   styleUrls: ['./recipe-search.component.css']
 })
 export class RecipeSearchComponent implements OnInit {
+  /* todo
+  * 1) make calls to yummly dictionary API to verify the inputs in filter
+  * 2) need to save results from API because they're needed for making the GET call
+  * 3) need to add functionality of filters
+  * 4) need to save filters to localStorage as well
+  * 5) add pages (should also be saved to local storage)
+  * 6) validity service
+  * */
+
 
   recipes: RecipeSearchBar[];
   recipesShow = false;
+  showAdvance = false;
+  onlyMyIng = false;
+  ings2excludeExist = false;
+  ings2exclude: string[];
+  allergiesExist = false;
+  allergies: string[];
+  dietsExist = false;
+  diets: string[];
+  initSearch: string;
 
   constructor(private recipeGetter: RecipesGetterService) { }
 
   ngOnInit() {
-    // this.getRecipes();
+    this.initSearch = JSON.parse(localStorage.getItem('SearchBar'));
+    localStorage.removeItem('SearchBar');
+    if(this.initSearch === undefined){
+      this.initSearch = '';
+    }
+    if(this.initSearch !== '' && this.initSearch != null) {
+      this.getRecipes(this.initSearch);
+    }
   }
 
   getRecipes(searchParams: string): void {
@@ -24,6 +48,7 @@ export class RecipeSearchComponent implements OnInit {
       console.log('No parameters specified');
       this.recipesShow = false;
     } else {
+      this.initSearch = searchParams;
       console.log('Asking service for recipes with search parameters: ' + searchParams);
       this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
@@ -35,9 +60,71 @@ export class RecipeSearchComponent implements OnInit {
     }
   }
 
-  /*getRecipes(txt: string): void {
-    console.log(txt);
-    this.recipeGetter.getRecipes().subscribe(recipes => this.recipes = recipes);
-  }*/
 
+  // this also needs to make sure that the input is valid
+  addIng(ingName: string): void {
+    if (ingName === '') {
+      return;
+    }
+    if (this.ings2excludeExist === false) {
+      this.ings2excludeExist = true;
+      this.ings2exclude = [];
+    }
+    this.ings2exclude.push(ingName);
+  }
+
+  removeIng(ingName: string): void {
+    const indx = this.ings2exclude.indexOf(ingName);
+    this.ings2exclude.splice(indx, 1);
+    if (this.ings2exclude.length === 0) {
+      this.ings2excludeExist = false;
+    }
+  }
+
+  // this also needs to make sure that the input is valid
+  addAllergy(allergyName: string): void {
+    if (allergyName === '') {
+      return;
+    }
+    if (this.allergiesExist === false) {
+      this.allergiesExist = true;
+      this.allergies = [];
+    }
+    this.allergies.push(allergyName);
+  }
+
+  removeAllergy(allergyName: string): void {
+    const indx = this.allergies.indexOf(allergyName);
+    this.allergies.splice(indx, 1);
+    if (this.allergies.length === 0) {
+      this.allergiesExist = false;
+    }
+  }
+
+  // this also needs to make sure that the input is valid
+  addDiet(dietName: string): void {
+    if (dietName === '') {
+      return;
+    }
+    if (this.dietsExist === false) {
+      this.dietsExist = true;
+      this.diets = [];
+    }
+    this.diets.push(dietName);
+  }
+
+  removeDiet(dietName: string): void {
+    const indx = this.diets.indexOf(dietName);
+    this.diets.splice(indx, 1);
+    if (this.diets.length === 0) {
+      this.dietsExist = false;
+    }
+  }
+
+  saveLocalState(): void{
+    if(this.initSearch !== ''){
+      localStorage.removeItem('SearchBar');
+      localStorage.setItem('SearchBar', JSON.stringify(this.initSearch));
+    }
+  }
 }
