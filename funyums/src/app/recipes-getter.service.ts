@@ -18,18 +18,8 @@ export class RecipesGetterService {
   getRecipes(searchParams: string): Observable<RecipeSearchBar[]> {
     console.log('Getting recipes from Yummly using the parameter ' + searchParams);
     const requestUrl = this.baseUrl + 's' + this.authentication + '&q=' + searchParams;
-    // console.log(requestUrl);
-    // let
-    // this.http.get<SearchResult>(requestUrl).subscribe(result => this.result = result);
-    // return of(this.result.matches);
     return this.http.get<SearchResult>(requestUrl).pipe(map(res => res.matches));
   }
-
-  /*getAllRecipes(): Observable<Recipe[]> {
-    console.log('Getting recipes from Yummly' );
-    const requestUrl = this.baseUrl + 's' + this.authentication + '&' + searchParams;
-    return this.http.get<Recipe[]>(requestUrl);
-  }*/
 
   getRecipeById(id: string): Observable<Recipe> {
     console.log('Getting recipe with ID: ' + id);
