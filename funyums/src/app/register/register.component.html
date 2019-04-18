@@ -1,8 +1,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<br>
-
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"><br>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 <p id = "alert" style = "display: none;color: #FF5C5C">Username or Password incorrect</p>
-<div class = "container" style="color: #444444;font-family:  Roboto;">
+<div class = "container" style="color: #444444;">
 
 
     <form #login = "ngForm" class = "login-form">
@@ -12,31 +17,36 @@
       <hr>
 
       <div class = "form-group">
-          <label for="name">Name</label>
-          <input class = "form-control" type="text" id="name" #name = "ngModel" name = "name" placeholder="Andy Dwyer" [(ngModel)]="this.full_name" ngModel required #name>
-  
+          <strong><label for="name">Name</label></strong>
+          <input class = "form-control" type = "text" id = "fullname" placeholder="Andy Dwyer" #uname = "ngModel" name = "fullname" [(ngModel)]="this.fullname" ngModel required #name>  
       </div>
+
+      <br>
       <div class = "section">
-          <label for="uname">Username</label>
+          <strong><label for="uname">Username</label></strong>
           <input class = "form-control" type = "text" id = "uname" placeholder="Johnny Karate" #uname = "ngModel" name = "uname" [(ngModel)]="this.username" ngModel required #name>
       </div>
 
+      <br>
       <div class = "section">
-          <label for="uemail" class="label">Email (not required)</label>
+          <strong><label for="uemail">Email (not required)</label></strong>
           <input class = "form-control" type = "text" id = "uemail" placeholder="bertMacklin@fbimail.com" #uemail = "ngModel" name = "uemail" [(ngModel)]="this.email" ngModel #name>
       </div>
 
+      <br>
       <div class = "section">
-          <label for="pswd" class="label">Password</label>
-          <input class = "form-control" type = "text" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #name>
+          <strong><label for="pswd">Password</label></strong>
+          <input placeholder="**********" class = "form-control" type = "password" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #name>
       </div>
 
 
       <br>
-      <button (click)="this.onSubmit()" type="submit" style="background-color:  #F7882F">Submit</button>
+      <button (click)="this.onSubmit()" type="submit" style="background-color: black">Submit</button>
     </form>
 
 
 
 </div>
+
+
 

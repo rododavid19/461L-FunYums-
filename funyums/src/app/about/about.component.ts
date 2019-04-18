@@ -39,6 +39,14 @@ export class AboutComponent implements OnInit {
   HadarIssues = 0;
   ShehryarIssues = 0;
   ChristianIssues = 0;
+
+  RodoTests = 0;
+  LoriTests = 0;
+  AshkanTests = 0;
+  HadarTests = 0;
+  ShehryarTests = 0;
+  ChristianTests = 0;
+  totalTests = 0;
   
   constructor(private aboutService: AboutService, private router: Router, private http:HttpClient) { }
 
@@ -48,6 +56,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.getGitCommits();
     this.getGitIssues();
+    this.getGitTests();
   }
 
   getGitCommits(){
@@ -107,6 +116,17 @@ export class AboutComponent implements OnInit {
           }
 
       });
+  }
+
+  getGitTests(){
+    this.RodoTests = 2;
+    this.LoriTests = 1;
+    this.AshkanTests = 2;
+    this.HadarTests = 1;
+    this.ShehryarTests = 1;
+    this.ChristianTests = 2;
+    this.totalTests = this.RodoTests + this.LoriTests + this.AshkanTests + this.HadarTests + this.ShehryarTests + this.ChristianTests;
+
   }
 
 
