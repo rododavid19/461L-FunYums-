@@ -24,29 +24,38 @@ export class LoginComponent implements OnInit {
   cookieValue = "UNKNOWN"
 
   ngOnInit() {
+    console.log("wow")
+    console.log("username: " +Policy.username);
+    if (!(Policy.username == null)){
+      alert('Alreay logged in');
+      this.router.navigateByUrl("/account-settings");
+    }
   }
 
   public Policy = [];
 
   onSubmit(){
-    
-    console.log("This is person");
-    this.loginService.getData()
-      .subscribe(data => this.Policy=data, error => console.log("lol"), () => {
-        console.log(this.Policy);
+    try{
+      console.log("This is person");
+      this.loginService.getData()
+        .subscribe(data => this.Policy=data, error => console.log("lol"), () => {
+          console.log(this.Policy);
 
-        for(let entry of this.Policy){
-              if(entry.username = this.username && entry.password == this.password){
-              alert("Successfully logged in");
-              this.router.navigateByUrl("/splash");
-              Policy.username = entry.username;
-              Policy.password = entry.password;
-              return;
-            }
-        }
-        alert("Invalid username or password");
-      });
-  }
+          for(let entry of this.Policy){
+                if(entry.username == this.username && entry.password == this.password){
+                alert("Successfully logged in");
+                this.router.navigateByUrl("/splash");
+                Policy.username = entry.username;
+                Policy.password = entry.password;
+                return;
+              }
+          }
+          alert("Invalid username or password");
+        });
+    }catch{
+        console.log('there was an error')
+    }
+}
   
 
 
