@@ -4,7 +4,7 @@
   rel="stylesheet"
   type="text/css"
 >
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <div class = "container" style="font-family: 'Montserrat', sans-serif;font-size: 15px;">
   <h1>Recipe Submission Form</h1>
   <br>
@@ -24,8 +24,24 @@
     <br />
 
     <div class="form-group">
+      <label for="name">Allergies</label>
+      <input type="text" class="form-control" id="allergies" required>
+    </div>
+
+    <form [formGroup]="form">
+      <label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{orders[i].name}}
+      </label>
+
+    </form>
+
+
+    <br />
+
+    <div class="form-group">
       <label for="name">Instructions</label>
-      <input type="text" class="form-control" id="" required>
+      <input type="text" class="form-control" id="instructions" required>
     </div>
 
     <br />
