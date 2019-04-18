@@ -18,8 +18,7 @@
 
       <div class = "form-group">
           <strong><label for="name">Name</label></strong>
-          <input class = "form-control" type="text" id="name" #name = "ngModel" name = "name" placeholder="Andy Dwyer" [(ngModel)]="this.full_name" ngModel required #name>
-  
+          <input class = "form-control" type = "text" id = "fullname" placeholder="Andy Dwyer" #uname = "ngModel" name = "fullname" [(ngModel)]="this.fullname" ngModel required #name>  
       </div>
 
       <br>
@@ -30,14 +29,14 @@
 
       <br>
       <div class = "section">
-          <strong><label for="uemail" class="label">Email (not required)</label></strong>
+          <strong><label for="uemail">Email (not required)</label></strong>
           <input class = "form-control" type = "text" id = "uemail" placeholder="bertMacklin@fbimail.com" #uemail = "ngModel" name = "uemail" [(ngModel)]="this.email" ngModel #name>
       </div>
 
       <br>
       <div class = "section">
-          <strong><label for="pswd" class="label">Password</label></strong>
-          <input placeholder="**********" class = "form-control" type = "text" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #name>
+          <strong><label for="pswd">Password</label></strong>
+          <input placeholder="**********" class = "form-control" type = "password" id = "pswd" #pswd = "ngModel" name = "pswd" [(ngModel)]="this.password" ngModel required #name>
       </div>
 
 

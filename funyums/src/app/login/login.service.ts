@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Policy} from './policy';
+import {person} from '../person';
 
 
 @Injectable()
@@ -17,8 +17,8 @@ export class LoginService{
     }
 
 
-    getData() : Observable<Policy[]>{
-        return this.http.get<Policy[]>("http://backend-237004.appspot.com/api/username_password");
+    getData() : Observable<person[]>{
+        return this.http.get<person[]>("http://backend-237004.appspot.com/api/username_password");
 
 
     }

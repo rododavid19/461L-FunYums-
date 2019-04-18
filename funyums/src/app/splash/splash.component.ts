@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Policy} from '../login/policy';
+import {person} from '../person';
+import {AppComponent} from '../app.component';
 
 
 @Component({
@@ -11,8 +12,17 @@ export class SplashComponent implements OnInit {
 
   constructor() { }
 
+  public person;
+  public fullname : String;
+
   ngOnInit() {
-    console.log(Policy.username);
+    if(AppComponent.getFromLocal("local") != null){
+      this.person = AppComponent.getFromLocal("local");
+    }
+    if(this.person != null){
+      this.fullname = this.person.fullname;
+    }
+    
   }
 
 }

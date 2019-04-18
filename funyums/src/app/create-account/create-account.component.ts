@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Policy} from '../login/policy';
 
 @Component({
   selector: 'app-create-account',

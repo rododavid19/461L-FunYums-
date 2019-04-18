@@ -3,7 +3,6 @@ import {AboutService} from "./about.service";
 import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import * as _ from 'lodash';
-import {Policy} from '../login/policy';
  
 
 
