@@ -10,6 +10,7 @@ body {
     font-family: 'Montserrat', sans-serif;
   }
 
+<<<<<<< HEAD
   .jumbotron h3, h4 {
     text-align: center; 
   }
@@ -28,22 +29,20 @@ body {
     margin-right: 0;
   }
 
+=======
+>>>>>>> parent of 740ee3b... final about page layout
   .jumbotron {
-    color: black;
+    color: white;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
-    background-image: url(/assets/flipped.jpg);
+    background-image: url(/assets/Food-for-desktop2.jpg);
     background-size: cover;
     padding-top: 10%;
-
-    background-size: cover; 
-    height: 100%;
-    width: 100%;
-    margin-bottom: 0px;
+    padding-bottom: 10%;
+    font-family: 'Montserrat', sans-serif;
   }
-
   .jumbotron p {
-    color: black;
+    color: white;
     font-size: 20px;
   }
   .jumbotron h1{
@@ -53,7 +52,7 @@ body {
   .glyphicon {
     font-size: 40px;
   }
-  .col-md-4, .col-md-3 {
+  .col-md-6 {
     text-align: center; 
   }
 
