@@ -25,6 +25,9 @@ import { Route, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
+import { StorageServiceModule, WebStorageService } from 'angular-webstorage-service';
+import { LogoutComponent } from './logout/logout.component';
+
 //import { CookieService } from 'ngx-cookie-service';
 
 
@@ -49,6 +52,7 @@ const ROUTES: Route[] = [
     RecipeViewComponent,
     ViewFavoritesComponent,
     RegisterComponent,
+    LogoutComponent,
 
   ],
   imports: [
@@ -59,6 +63,7 @@ const ROUTES: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
+    StorageServiceModule
   
   
 
