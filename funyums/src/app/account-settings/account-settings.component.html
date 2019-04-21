@@ -5,27 +5,42 @@
   type="text/css"
 >
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
-<div class = "container">
- 
-    <div class = "col-sm-3">
-      
-    </div>
 
-      <div class = "col-sm-9;"  style="font-family: 'Montserrat', sans-serif;font-size: 18px; line-height: 1.8;">
-        <h1>Account Information</h1>
+
+
+<div class = "container">
+ <div class = "row" style="font-family: 'Montserrat', sans-serif;font-size: 18px; line-height: 1.8; ">
+
+  
+      <div class = "col-sm-2">
+        
         <br>
+        <br>
+       
+        <br>
+        <a routerLink="/rewards"><p>Rewards</p></a>
+        <p>link2</p>
+      </div> 
+  
+    
+      <div class = "col-sm-6;" style="padding-left: 2em;">
+        
+        <h1>Account Information</h1>
+        <hr>
+        <br>
+        
         <div style = "padding-left: 2em;">
           <div>
             <p>
               <strong>Username: </strong>
-              BertMacklinFBI 
+              {{uname}}
             </p>
           </div>
 
           <div>
             <p>
               <strong>Name (optional) : </strong>
-              Andy Dwyer
+              {{name}}
             </p>
           </div>
 
@@ -40,7 +55,7 @@
               <div>
             <p>
               <strong>Account Rank: </strong>
-              Level 15 - Sous Chef
+              {{account_rank}}
             </p>
           </div>
 
@@ -49,6 +64,7 @@
                 <strong>Recent Recipes: </strong>
               </p>
               <ul>
+                  <li>{{recipes}}</li>
                   <li>Pomogranate Salad - <a href="https://www.williams-sonoma.com/recipe/spinach-pear-and-pomegranate-salad.html">Link</a></li>
                 </ul>
             </div>
@@ -56,3 +72,4 @@
         </div>
       </div>
 </div>
+</div> 

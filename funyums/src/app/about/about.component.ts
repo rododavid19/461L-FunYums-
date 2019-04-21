@@ -60,7 +60,9 @@ export class AboutComponent implements OnInit {
   }
 
   getGitCommits(){
-    this.aboutService.getCommits()
+
+    for(var i = 1; i < 3; i++){
+      this.aboutService.getCommits(i)
       .subscribe(data => this.commits=data, error => console.log("lol"), () => {
       for(let entry of this.commits){
         if(entry.author.login == "ShayAhmed"){
@@ -84,6 +86,8 @@ export class AboutComponent implements OnInit {
         this.totalCommits++;
       }
       });
+    }
+    
   }
 
 

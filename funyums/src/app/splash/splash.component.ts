@@ -12,7 +12,7 @@ export class SplashComponent implements OnInit {
 
   constructor() { }
 
-  public person;
+  public person : person;
   public fullname : String;
 
   ngOnInit() {

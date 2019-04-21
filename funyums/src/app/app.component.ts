@@ -1,6 +1,7 @@
 import { Component, Injectable, Inject, OnInit } from '@angular/core';
 import {LOCAL_STORAGE, StorageService, StorageServiceModule, WebStorageService} from 'angular-webstorage-service';
 import { setTNodeAndViewData } from '@angular/core/src/render3/state';
+import { person } from './person';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +47,7 @@ export class AppComponent {
     this.storage.set(key, val);
   }
 
-  public static getFromLocal(key): Object {
+  public static getFromLocal(key): person {
     console.log('recieved= key:' + key);
     console.log(this.storage.get(key));
     return this.storage.get(key);

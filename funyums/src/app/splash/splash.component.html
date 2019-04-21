@@ -3,56 +3,60 @@
   href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
   rel="stylesheet"
   type="text/css"
->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 
 <div class="jumbotron">
   <div class="container">
     <br>
-    <h1>Welcome to FunYums! {{ fullname }}</h1>
+    <h1>Welcome to FunYums!</h1>
     <p>
       The best recipes, with the best search features, all from one site. <br>
       What are you waiting for? Let's get cooking!
     </p>
   </div>
+
+  <br>
+  <br>
+
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
 </div>
 
-
-
-
-<div class="container">
+<div class="container2">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
       <h3>Create a Recipe List</h3>
-      <p>
+      <h4>
         Create a list of your favorite and future recipes!
-      </p>
+      </h4>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      <h3>Search By Ingredients</h3>
-      <p>Don't know what to cook tonight? Search by ingredients in your pantry!</p>
+      <a routerLink="/search">Search By Ingredients</a>
+      <h4>Don't know what to cook tonight? Search by ingredients in your pantry!</h4>
     </div>
   </div>
   <br>
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
       <h3>Get Nutritional Facts</h3>
-      <p>
+      <h4>
         Each recipe has nutritonal information and facts for your reading!
-      </p>
+      </h4>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <h3>Earn Points and Rewards</h3>
-      <p> Channel your inner chef and earn points to unlock hidden features! </p>
+      <a routerLink="/rewards">Earn Rewards</a>
+      <h4> Channel your inner chef and earn points to unlock hidden features! </h4>
     </div>
 </div>
-
 </div>
-
-
-
