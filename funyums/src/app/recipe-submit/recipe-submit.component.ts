@@ -11,6 +11,9 @@
 })
 export class RecipeSubmitComponent implements OnInit {
 
+
+
+
   item:string;
   constructor() {
     this.item = 'hello';
@@ -36,6 +39,8 @@ const orders = [
   { id: 8, name: 'Fish' },
 ];
 
+
+
 @Component({
   selector: 'app-recipe-submit',
   templateUrl: './recipe-submit.component.html',
@@ -44,6 +49,9 @@ const orders = [
 export class AppComponent {
   form: FormGroup;
   orders = [];
+
+  ings2excludeExist = false;
+  ings2exclude: string[];
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -79,6 +87,26 @@ export class AppComponent {
       { id: 700, name: 'Soy' },
       { id: 800, name: 'Fish' },
     ];
+  }
+
+
+  addIng(ingName: string): void {
+    if (ingName === '') {
+      return;
+    }
+    if (this.ings2excludeExist === false) {
+      this.ings2excludeExist = true;
+      this.ings2exclude = [];
+    }
+    this.ings2exclude.push(ingName);
+  }
+
+  removeIng(ingName: string): void {
+    const indx = this.ings2exclude.indexOf(ingName);
+    this.ings2exclude.splice(indx, 1);
+    if (this.ings2exclude.length === 0) {
+      this.ings2excludeExist = false;
+    }
   }
 
   // submit() {}

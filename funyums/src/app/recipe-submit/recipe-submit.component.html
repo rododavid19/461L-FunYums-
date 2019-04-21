@@ -31,9 +31,8 @@
     <form [formGroup]="form">
       <label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">
         <input type="checkbox" [formControlName]="i">
-        {{orders[i].name}}
+          {{orders[i].name}}
       </label>
-
     </form>
 
 
@@ -62,6 +61,30 @@
 
   </form>
 </div>
+
+
+
+<div>
+
+  <label>Ingredients to Add </label>
+  <input #excluded_ing type="text" (keyup.enter)="addIng(excluded_ing.value)">
+  <button (click)="addIng(excluded_ing.value)">Add</button>
+  <br>
+
+
+  <div *ngIf="ings2excludeExist">
+    <label>Ingredients to exclude: </label>
+    <button *ngFor="let ing of ings2exclude" (click)="removeIng(ing)">
+      {{ing}}
+    </button>
+  </div>
+
+</div>
+
+
+
+
+
 
 
 
