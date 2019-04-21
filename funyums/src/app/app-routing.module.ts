@@ -9,6 +9,7 @@ import { ViewFavoritesComponent} from './view-favorites/view-favorites.component
 import { RecipeSubmitComponent} from './recipe-submit/recipe-submit.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { SplashComponent } from './splash/splash.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'favorites', component: ViewFavoritesComponent},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: 'splash', component: SplashComponent},
   {path:'register',component:RegisterComponent},
 

@@ -4,6 +4,13 @@ import {RecipesGetterService} from '../recipes-getter.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 
+/* todo
+* 1) actually add everything we wanted to add to the page
+* 2) style a bit maybe
+* 3) make and back buttons
+* */
+
+
 @Component({
   selector: 'app-recipe-view',
   templateUrl: './recipe-view.component.html',
