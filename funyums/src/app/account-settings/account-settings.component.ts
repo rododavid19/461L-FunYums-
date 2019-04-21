@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Policy} from '../login/policy';
+import {person} from '../person';
 import { Router } from '@angular/router';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-account-settings',
@@ -13,19 +14,24 @@ export class AccountSettingsComponent implements OnInit {
   name: any;
   account_rank:any;
   recipes:any;
+  public person : person;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
 
-    if(Policy.username == null){
+    if(AppComponent.getFromLocal("local") != null){
+      this.person = AppComponent.getFromLocal("local");
+    }
+
+    if(this.person.username == null){
       alert('Need to login to do this')
       this.router.navigateByUrl('/login');
     }
-    this.uname = Policy.username;
-    this.name = Policy.name;
-    this.account_rank = Policy.account_rank;
-    this.recipes = Policy.recipes;
+    this.uname = this.person.username;
+    this.name = this.person.fullname
+    this.account_rank = this.person.rank;
+    this.recipes = this.person.favorites;
   }
 
 }
