@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Diet, DIETS} from './yummly_params';
+import { Diet, DIETS, Allergy, ALLERGIES} from './yummly_params';
 
 import {Recipe, RecipeSearchBar, SearchResult} from './recipe';
 import {Observable, of } from 'rxjs';
@@ -19,7 +19,7 @@ export class ValidatorService {
   validateIngredients(name: string): string{
     return null;
   }
-  // todo
+
   validateDiet(name: string): string[]{
     name = name.toLowerCase();
     let trueName = '';
@@ -39,6 +39,20 @@ export class ValidatorService {
   }
   // todo
   validateAllergy(name: string): string[]{
-    return null;
+    name = name.toLowerCase();
+    let trueName = '';
+    let searchParam = '';
+    for(let allergy of ALLERGIES){
+      if(allergy.shortDescription.toLowerCase() === name){
+        trueName = allergy.shortDescription;
+        searchParam = allergy.searchValue;
+        break;
+      }
+    }
+    if ( trueName !== ''){
+      return [trueName, searchParam];
+    } else{
+      return null;
+    }
   }
 }

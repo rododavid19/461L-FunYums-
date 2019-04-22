@@ -5,7 +5,9 @@ export class Diet {
 }
 
 export class Allergy {
-
+  id: number;
+  shortDescription: string;
+  searchValue: string;
 }
 
 export const DIETS: Diet[] = [
@@ -45,4 +47,44 @@ export const DIETS: Diet[] = [
     shortDescription: 'Vegetarian',
     searchValue: '387^Lacto-ovo vegetarian'
   }
+];
+
+export const ALLERGIES: Allergy[] = [
+  {id: 393,
+    shortDescription: 'Gluten',
+    searchValue: '393^Gluten-Free'
+  },
+  {id: 394, shortDescription: 'Peanut',
+    searchValue: '394^Peanut-Free'
+  },
+  {id: 398,
+    shortDescription: 'Seafood',
+    searchValue: '398^Seafood-Free'},
+  {id: 399,
+    shortDescription: 'Sesame',
+    searchValue: '399^Sesame-Free',
+    },
+  {id: 400,
+    shortDescription: 'Soy',
+    searchValue: '400^Soy-Free',
+  },
+  {id: 396,
+    shortDescription: 'Dairy',
+    searchValue: '396^Dairy-Free'
+  },
+  {id: 397,
+    shortDescription: 'Egg',
+    searchValue: '397^Egg-Free'
+  },
+  {id: 401,
+    shortDescription: 'Sulfite',
+    searchValue: '401^Sulfite-Free'
+  },
+  {id: 395,
+    shortDescription: 'Tree Nut',
+    searchValue: '395^Tree Nut-Free'
+  },
+  {id: 392,
+    shortDescription: 'Wheat',
+    searchValue: '392^Wheat-Free'}
 ];
