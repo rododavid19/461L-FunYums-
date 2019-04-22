@@ -15,9 +15,20 @@ export class RecipesGetterService {
   result: SearchResult;
 
   constructor(private http:HttpClient) { }
-  getRecipes(searchParams: string): Observable<RecipeSearchBar[]> {
-    console.log('Getting recipes from Yummly using the parameter ' + searchParams);
-    const requestUrl = this.baseUrl + 's' + this.authentication + '&q=' + searchParams;
+  getRecipes(searchParams: string, diets: string[]): Observable<RecipeSearchBar[]> {
+    let requestUrl = this.baseUrl + 's' + this.authentication;
+    if(searchParams !== null && searchParams !==''){
+      console.log('Getting recipes from Yummly using the parameter ' + searchParams);
+      requestUrl =  requestUrl + '&q=' + searchParams;
+    }
+    console.log("Current url "+requestUrl);
+    if(diets !== null && diets.length !== 0){
+      for(let diet of diets){
+        requestUrl = requestUrl + "&allowedDiet[]=" + diet;
+        console.log("Current url "+requestUrl);
+      }
+    }
+    console.log("Final url "+requestUrl);
     return this.http.get<SearchResult>(requestUrl).pipe(map(res => res.matches));
   }
 

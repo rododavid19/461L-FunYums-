@@ -32,6 +32,7 @@
     <label>Only show recipes that accommodate an allergy to: </label>
     <input #allergies_inp type="text" (keyup.enter)="addAllergy(allergies_inp.value)">
     <button (click)="addAllergy(allergies_inp.value)">Add</button>
+    <p *ngIf="allergyError" style="color: red;">Invalid Allergy</p>
     <br>
     <label>Only show recipes that accommodate to these diets: </label>
     <input #diets_inp type="text" (keyup.enter)="addDiet(diets_inp.value)">

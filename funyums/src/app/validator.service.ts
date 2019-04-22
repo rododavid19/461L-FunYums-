@@ -10,7 +10,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ValidatorService {
-  backEndURL ='http://backend-237004.appspot.com/api/recipes/:id/exists';
+  backEndURL ='hhttps://backend-237004.appspot.com/api/ingredients/apple/exists';
 
 
   constructor(private http: HttpClient) { }

@@ -31,6 +31,7 @@ export class RecipeSearchComponent implements OnInit {
   diets: string[];
   initSearch: string;
   dietError = false;
+  allergyError = false;
 
   constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService) { }
 
@@ -46,13 +47,11 @@ export class RecipeSearchComponent implements OnInit {
   }
 
   getRecipes(searchParams: string): void {
-    if (searchParams === '') {
-      console.log('No parameters specified');
-      this.recipesShow = false;
-    } else {
-      this.initSearch = searchParams;
-      console.log('Asking service for recipes with search parameters: ' + searchParams);
-      this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
+    this.initSearch = searchParams;
+    console.log('Asking service for recipes with search parameters: ' + searchParams);
+    const dietParams = this.prepDietSearch();
+    console.log('using search params'+ dietParams);
+    this.recipeGetter.getRecipes(searchParams, dietParams).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
       if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
@@ -60,7 +59,6 @@ export class RecipeSearchComponent implements OnInit {
         this.recipesShow = true;
       }
     }
-  }
 
   // this also needs to make sure that the input is valid
   addIng(ingName: string): void {
@@ -117,7 +115,7 @@ export class RecipeSearchComponent implements OnInit {
       this.diets = [];
     }
     this.dietError = false;
-    this.diets.push(dietName);
+    this.diets.push(validated[0]);
   }
 
   removeDiet(dietName: string): void {
@@ -133,5 +131,19 @@ export class RecipeSearchComponent implements OnInit {
       localStorage.removeItem('SearchBar');
       localStorage.setItem('SearchBar', JSON.stringify(this.initSearch));
     }
+  }
+
+  prepDietSearch(): string[]{
+    if (this.dietsExist !== false){
+      if( this.diets.length !== 0){
+        let dietParams = [];
+        for( let diet of this.diets){
+          const realParam = this.validator.validateDiet(diet)[1];
+          dietParams.push(realParam);
+        }
+        return dietParams;
+      }
+    }
+    return null;
   }
 }
