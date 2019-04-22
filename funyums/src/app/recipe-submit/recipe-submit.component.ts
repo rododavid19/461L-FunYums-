@@ -1,6 +1,8 @@
   import { Component, OnInit } from '@angular/core';
   import { Recipe } from '../recipe';
   import {RecipesGetterService} from '../recipes-getter.service';
+  import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
+
 
   import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
   import { of } from 'rxjs';
@@ -15,8 +17,54 @@
 
 export class RecipeSubmitComponent implements OnInit {
 
+  public recipesShow;
 
-  constructor(private recipeGetter: RecipesGetterService) { }
+  public recipeName : String;
+  public instructions : String;
+  public ingredients : String;
+
+  constructor(private http:HttpClient,private recipeGetter: RecipesGetterService) { }
+
+  public setName(event){
+    this.recipeName = event.target.value;
+  }
+  public setInstructions(event){
+    this.instructions = event.target.value;
+  }
+
+  public saveRecipe(){
+    console.log(this.recipeName);
+    console.log(this.instructions);
+    this.ingredients = "";
+
+    for(let entry of this.ings2exclude){
+      console.log(entry);
+      this.ingredients += entry;
+      this.ingredients += ",";
+    }
+
+    this.http.post("http://backend-237004.appspot.com/api/recipes",
+    {
+    "name"     :   this.recipeName,
+    "ingredients"      :  this.ingredients,
+    "directions" :   this.instructions,
+    })
+    .subscribe(
+    data  => {
+    console.log("POST Request is successful ", data);
+
+    
+    },
+    error  => {
+
+
+    }
+
+    );
+
+  
+  
+  }
 
 
   submitted = false;
@@ -104,12 +152,12 @@ export class RecipeSubmitComponent implements OnInit {
   ];
 
 
-@Component({
-  selector: 'app-recipe-submit',
-  templateUrl: './recipe-submit.component.html',
-  styleUrls: ['./recipe-submit.component.css']
-})
-export class AppComponent {
+//@Component({
+//  selector: 'app-recipe-submit',
+//  templateUrl: './recipe-submit.component.html',
+//  styleUrls: ['./recipe-submit.component.css']
+//})
+//export class AppComponent {
 //   form: FormGroup;
 //   orders = [];
 //
@@ -173,7 +221,7 @@ export class AppComponent {
 //   }
 //
 //   // submit() {}
- }
+ //}
 
 
 

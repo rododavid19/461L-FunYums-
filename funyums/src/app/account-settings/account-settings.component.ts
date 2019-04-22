@@ -24,11 +24,11 @@ export class AccountSettingsComponent implements OnInit {
       this.person = AppComponent.getFromLocal("local");
     }
 
-    if(this.person.username == null){
+    if(this.person.email == null){
       alert('Need to login to do this')
       this.router.navigateByUrl('/login');
     }
-    this.uname = this.person.username;
+    this.uname = this.person.email;
     this.name = this.person.fullname
     this.account_rank = this.person.rank;
     this.recipes = this.person.favorites;

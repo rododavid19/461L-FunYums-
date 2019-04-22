@@ -11,7 +11,7 @@
   <form>
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required>
+      <input #excluded_ing type="text" class="form-control" id="name" style="width:195px" (keyup)="setName($event)" required >
     </div>
 
     <br />
@@ -19,13 +19,15 @@
     <div>
 
 
-      <label>Ingredients to Add </label>
-      <input #excluded_ing type="text" id="addedIngredient">
+      <label>Ingredients Required </label>
+      <br>
+      <input #excluded_ing type="text" id="addedIngredient" > &nbsp;
       <button (click)="addIng(excluded_ing.value)" style="background-color: black;" >Add</button>
+      <br>
       <br>
 
       <div *ngIf="ings2excludeExist">
-        <label>Ingredients Currently Added</label>
+        <label>Ingredients Currently Added </label><br>
         <button *ngFor="let ing of ings2exclude" (click)="removeIng(ing)" style="background-color: black; color: white">
           {{ing}}
         </button>
@@ -52,7 +54,8 @@
 
     <div class="form-group">
       <label for="name">Instructions</label>
-      <input type="text" class="form-control" id="instructions" required>
+      
+      <textarea type="textarea" class="form-control" id="instructions" style="width:500px;height:500px;" (keyup)="setInstructions($event)" required></textarea>
     </div>
 
     <br />
@@ -75,8 +78,11 @@
 
     <br />
 
-    <button type="submit" class="btn btn-success" style="background-color: black;">Submit</button>
-
+    <button (click)="saveRecipe()" type="submit" class="btn btn-success" style="background-color: black;">Submit</button>
+    <br>
+    <br>
+    <br>
+    <br>
 
   </form>
 
