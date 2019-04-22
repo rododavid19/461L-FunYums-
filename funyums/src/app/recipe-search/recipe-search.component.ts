@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
+import {ValidatorService} from '../validator.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -29,8 +30,9 @@ export class RecipeSearchComponent implements OnInit {
   dietsExist = false;
   diets: string[];
   initSearch: string;
+  dietError = false;
 
-  constructor(private recipeGetter: RecipesGetterService) { }
+  constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService) { }
 
   ngOnInit() {
     this.initSearch = JSON.parse(localStorage.getItem('SearchBar'));
@@ -59,7 +61,6 @@ export class RecipeSearchComponent implements OnInit {
       }
     }
   }
-
 
   // this also needs to make sure that the input is valid
   addIng(ingName: string): void {
@@ -106,10 +107,16 @@ export class RecipeSearchComponent implements OnInit {
     if (dietName === '') {
       return;
     }
+    const validated = this.validator.validateDiet(dietName);
+    if( validated == null){
+      this.dietError = true;
+      return;
+    }
     if (this.dietsExist === false) {
       this.dietsExist = true;
       this.diets = [];
     }
+    this.dietError = false;
     this.diets.push(dietName);
   }
 
