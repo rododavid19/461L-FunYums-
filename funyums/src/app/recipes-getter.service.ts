@@ -14,14 +14,33 @@ export class RecipesGetterService {
   authentication = '?_app_id=dae14cbd&_app_key=993954829f8356d54ca793f29ea9a14b';
   result: SearchResult;
 
-  constructor(private http:HttpClient) { }
-  getRecipes(searchParams: string): Observable<RecipeSearchBar[]> {
-    console.log('Getting recipes from Yummly using the parameter ' + searchParams);
-    const requestUrl = this.baseUrl + 's' + this.authentication + '&q=' + searchParams;
+  constructor(private http: HttpClient) { }
+  getRecipes(searchParams: string, diets: string[], allergies: string[]): Observable<RecipeSearchBar[]> {
+    let requestUrl = this.baseUrl + 's' + this.authentication;
+    if (searchParams !== null && searchParams !== '') {
+      console.log('Getting recipes from Yummly using the parameter ' + searchParams);
+      requestUrl = requestUrl + '&q=' + searchParams;
+    }
+    console.log(diets);
+    console.log('Current url ' + requestUrl);
+    if (diets !== null && diets.length !== 0) {
+      for (const diet of diets) {
+        requestUrl = requestUrl + '&allowedDiet[]=' + diet;
+        console.log('Current url ' + requestUrl);
+      }
+    }
+    console.log(allergies);
+    if (allergies !== null && allergies.length !== 0) {
+      for (const allergy of allergies) {
+        requestUrl = requestUrl + '&allowedAllergy[]=' + allergy;
+        console.log('Current url ' + requestUrl);
+      }
+    }
+    console.log('Final url ' + requestUrl);
     return this.http.get<SearchResult>(requestUrl).pipe(map(res => res.matches));
   }
 
-  getRecipeById(id: string): Observable<Recipe> {
+    getRecipeById(id: string): Observable < Recipe > {
     console.log('Getting recipe with ID: ' + id);
     const requestUrl = this.baseUrl + '/' + id + this.authentication;
     console.log(requestUrl);

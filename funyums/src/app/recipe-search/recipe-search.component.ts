@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
+import {ValidatorService} from '../validator.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -29,37 +30,37 @@ export class RecipeSearchComponent implements OnInit {
   dietsExist = false;
   diets: string[];
   initSearch: string;
+  dietError = false;
+  allergyError = false;
 
-  constructor(private recipeGetter: RecipesGetterService) { }
+  constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService) { }
 
   ngOnInit() {
+    // init search bar
     this.initSearch = JSON.parse(localStorage.getItem('SearchBar'));
     localStorage.removeItem('SearchBar');
-    if(this.initSearch === undefined){
+    if (this.initSearch === undefined) {
       this.initSearch = '';
     }
-    if(this.initSearch !== '' && this.initSearch != null) {
+    if (this.initSearch !== '' && this.initSearch != null) {
       this.getRecipes(this.initSearch);
     }
   }
 
   getRecipes(searchParams: string): void {
-    if (searchParams === '') {
-      console.log('No parameters specified');
-      this.recipesShow = false;
-    } else {
-      this.initSearch = searchParams;
-      console.log('Asking service for recipes with search parameters: ' + searchParams);
-      this.recipeGetter.getRecipes(searchParams).subscribe(recipes => this.recipes = recipes);
+    this.initSearch = searchParams;
+    console.log('Asking service for recipes with search parameters: ' + searchParams);
+    const dietParams = this.prepDietSearch();
+    console.log('using search params' + dietParams);
+    const allergyParams = this.prepAllergySearch();
+    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
-      if (this.recipes != null && this.recipes.length === 0 ) {
+    if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
       } else {
         this.recipesShow = true;
       }
     }
-  }
-
 
   // this also needs to make sure that the input is valid
   addIng(ingName: string): void {
@@ -86,11 +87,17 @@ export class RecipeSearchComponent implements OnInit {
     if (allergyName === '') {
       return;
     }
+    const validated = this.validator.validateAllergy(allergyName);
+    if ( validated == null) {
+      this.allergyError = true;
+      return;
+    }
     if (this.allergiesExist === false) {
       this.allergiesExist = true;
       this.allergies = [];
     }
-    this.allergies.push(allergyName);
+    this.allergyError = false;
+    this.allergies.push(validated[0]);
   }
 
   removeAllergy(allergyName: string): void {
@@ -106,11 +113,17 @@ export class RecipeSearchComponent implements OnInit {
     if (dietName === '') {
       return;
     }
+    const validated = this.validator.validateDiet(dietName);
+    if ( validated == null) {
+      this.dietError = true;
+      return;
+    }
     if (this.dietsExist === false) {
       this.dietsExist = true;
       this.diets = [];
     }
-    this.diets.push(dietName);
+    this.dietError = false;
+    this.diets.push(validated[0]);
   }
 
   removeDiet(dietName: string): void {
@@ -121,10 +134,40 @@ export class RecipeSearchComponent implements OnInit {
     }
   }
 
-  saveLocalState(): void{
-    if(this.initSearch !== ''){
+  saveLocalState(): void {
+    if (this.initSearch !== '') {
       localStorage.removeItem('SearchBar');
       localStorage.setItem('SearchBar', JSON.stringify(this.initSearch));
+      // localStorage.removeItem('diets');
+      // localStorage.setItem('diets', JSON.stringify(this.diets));
     }
+  }
+
+  prepDietSearch(): string[] {
+    if (this.dietsExist !== false) {
+      if ( this.diets.length !== 0) {
+        const dietParams = [];
+        for ( const diet of this.diets) {
+          const realParam = this.validator.validateDiet(diet)[1];
+          dietParams.push(realParam);
+        }
+        return dietParams;
+      }
+    }
+    return null;
+  }
+
+  prepAllergySearch(): string[] {
+    if (this.allergiesExist !== false) {
+      if ( this.allergies.length !== 0) {
+        const allergiesParams = [];
+        for ( const allergy of this.allergies) {
+          const realParam = this.validator.validateAllergy(allergy)[1];
+          allergiesParams.push(realParam);
+        }
+        return allergiesParams;
+      }
+    }
+    return null;
   }
 }
