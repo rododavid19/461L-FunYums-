@@ -19,7 +19,7 @@
        
         <br>
         <a routerLink="/rewards"><p>Rewards</p></a>
-        <p>link2</p>
+        
       </div> 
   
     
@@ -52,7 +52,7 @@
           </div>
 
 
-              <div>
+          <div>
             <p>
               <strong>Account Rank: </strong>
               {{account_rank}}
@@ -60,13 +60,31 @@
           </div>
 
           <div>
+            <p>
+              <strong>Ingredients/Add Ingredient: </strong>
+              
+            </p>
+            <ul>
+              <li *ngFor="let ing of IngredientsString"> 
+                {{ ing }}
+              </li>
+             </ul>
+            
+            <input id="add-ingredient" type="text" class="form-control" [(ngModel)] = "addThisIngredient">
+            <button style="background-color: black" class = "btn btn-primary" (click)="this.addIngredient()">Add</button>
+
+          </div>
+
+          <div>
               <p>
-                <strong>Recent Recipes: </strong>
+                <strong>Favorites </strong>
               </p>
               <ul>
-                  <li>{{recipes}}</li>
-                  <li>Pomogranate Salad - <a href="https://www.williams-sonoma.com/recipe/spinach-pear-and-pomegranate-salad.html">Link</a></li>
-                </ul>
+                <li *ngFor="let fav of FavsString"> 
+                  {{ fav }}
+                </li>
+               </ul>
+              
             </div>
 
         </div>
