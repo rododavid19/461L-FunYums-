@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <br>
 
+<script type="text/javascript" src="../../../node_modules/auth0-js/build/auth0.js"></script>
 
-
+<!-- 
 <div class = "container" style="color: #444444;">
     
 
@@ -41,3 +42,34 @@
     
     
     </div>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Auth0 - Angular</a>
+    
+          <button
+            class="btn btn-primary btn-margin"
+            routerLink="/">
+              Home
+          </button>
+    
+          <button
+            class="btn btn-primary btn-margin"
+            *ngIf="!loginService.isAuthenticated()"
+            (click)="loginService.login()">
+              Log In
+          </button>
+    
+          <button
+            class="btn btn-primary btn-margin"
+            *ngIf="loginService.isAuthenticated()"
+            (click)="loginService.logout()">
+              Log Out
+          </button>
+    
+        </div>
+      </div>
+    </nav>
+    
+    -->

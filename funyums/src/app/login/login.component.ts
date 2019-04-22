@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,private loginService:LoginService) { }//private cs: CookieService
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginService.login();
+
+  }
 
   public people = [];
   public Person = new person();
@@ -30,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     
-    console.log("This is person");
+    /*console.log("This is person");
     this.loginService.getData()
       .subscribe(data => this.people=data, error => console.log("lol"), () => {
         console.log(this.people);
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
             }
         }
         alert("Invalid username or password");
-      });
+      });*/
   }
   
 

@@ -2,6 +2,8 @@ import { Component, Injectable, Inject, OnInit } from '@angular/core';
 import {LOCAL_STORAGE, StorageService, StorageServiceModule, WebStorageService} from 'angular-webstorage-service';
 import { setTNodeAndViewData } from '@angular/core/src/render3/state';
 import { person } from './person';
+import { LoginService } from './login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,15 +19,22 @@ export class AppComponent {
   public static displayLogout;
   public ref = AppComponent;
   
-  constructor(@Inject(LOCAL_STORAGE) private s: StorageService) {
+  constructor(@Inject(LOCAL_STORAGE) private s: StorageService, public loginService: LoginService, public router: Router) {
     
      AppComponent.storage = s;
+     loginService.handleAuthentication();
+    //console.log(window.location.hash );
+
   }
 
   ngOnInit() {
-    console.log("lmao");
+    if(this.loginService.isAuthenticated()){
+      this.loginService.renewTokens();
+    }
+
     AppComponent.setNav();
 
+    
   }
 
 
