@@ -53,7 +53,7 @@ export class RecipeSubmitComponent implements OnInit {
     data  => {
     console.log("POST Request is successful ", data);
 
-    
+
     },
     error  => {
 
@@ -62,8 +62,8 @@ export class RecipeSubmitComponent implements OnInit {
 
     );
 
-  
-  
+
+
   }
 
 
@@ -139,7 +139,6 @@ export class RecipeSubmitComponent implements OnInit {
 
 }
 
-
   const orders = [
     { id: 1, name: 'Cow&#39s Milk' },
     { id: 2, name: 'Eggs' },
@@ -151,77 +150,6 @@ export class RecipeSubmitComponent implements OnInit {
     { id: 8, name: 'Fish' },
   ];
 
-
-//@Component({
-//  selector: 'app-recipe-submit',
-//  templateUrl: './recipe-submit.component.html',
-//  styleUrls: ['./recipe-submit.component.css']
-//})
-//export class AppComponent {
-//   form: FormGroup;
-//   orders = [];
-//
-//   ings2excludeExist = false;
-//   ings2exclude: string[];
-//
-//   constructor(private formBuilder: FormBuilder) {
-//     this.form = this.formBuilder.group({
-//       orders: new FormArray([])
-//     });
-//
-//     // async orders (could be a http service call)
-//     of(this.getOrders()).subscribe(orders => {
-//       this.orders = orders;
-//       this.addCheckboxes();
-//     });
-//
-//     // synchronous orders
-//     this.orders = this.getOrders();
-//     this.addCheckboxes();
-//   }
-//
-//   private addCheckboxes() {
-//     this.orders.map((o, i) => {
-//       const control = new FormControl(i === 0); // if first item set to true, else false
-//       (this.form.controls.orders as FormArray).push(control);
-//     });
-//   }
-//
-//   getOrders() {
-//     return [
-//       { id: 100, name: 'Cow&#39s Milk' },
-//       { id: 200, name: 'Eggs' },
-//       { id: 300, name: 'Tree Nuts' },
-//       { id: 400, name: 'Peanuts' },
-//       { id: 500, name: 'Shellfish' },
-//       { id: 600, name: 'Wheat' },
-//       { id: 700, name: 'Soy' },
-//       { id: 800, name: 'Fish' },
-//     ];
-//   }
-//
-//
-//   addIng(ingName: string): void {
-//     if (ingName === '') {
-//       return;
-//     }
-//     if (this.ings2excludeExist === false) {
-//       this.ings2excludeExist = true;
-//       this.ings2exclude = [];
-//     }
-//     this.ings2exclude.push(ingName);
-//   }
-//
-//   removeIng(ingName: string): void {
-//     const indx = this.ings2exclude.indexOf(ingName);
-//     this.ings2exclude.splice(indx, 1);
-//     if (this.ings2exclude.length === 0) {
-//       this.ings2excludeExist = false;
-//     }
-//   }
-//
-//   // submit() {}
- //}
 
 
 
