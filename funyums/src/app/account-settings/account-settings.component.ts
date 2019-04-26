@@ -48,7 +48,7 @@ export class AccountSettingsComponent implements OnInit {
       
       console.log(this.person.ingredients);
       var listIngredients = [];
-      var IngredientsString = this.person.ingredients.split(" ");
+      var IngredientsString = this.person.ingredients.split(", ");
       console.log(IngredientsString);
       this.ingredients = IngredientsString;
     }
@@ -60,7 +60,7 @@ export class AccountSettingsComponent implements OnInit {
       
       console.log(this.person.favorites);
       var listFav = [];
-      var FavssString = this.person.favorites.split(" ");
+      var FavssString = this.person.favorites.split(", ");
       console.log(FavssString);
       this.favorites = FavssString;
     }
