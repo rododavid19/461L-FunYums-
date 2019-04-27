@@ -6,10 +6,36 @@
 />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-<h2>{{recipe?.name}}</h2>
-<p>More details here. Flavors, time to make, picture (if available) and link to recipe</p>
 
-<div *ngIf="showImage">
-  <img src= "{{imageURL}}">
-</div>
-<a href="{{recipe?.source.sourceRecipeUrl}}">View full recipe here!</a>
+
+
+<div class = "container">
+    <div class = "row" style="font-family: 'Montserrat', sans-serif;font-size: 18px; line-height: 1.8; ">
+
+   <div>
+      <h1>{{recipe?.name}}</h1>
+     
+        <img src= "{{imageURL}}">
+
+        <br><br>
+
+        <strong>Total time:</strong> {{recipe?.totalTime}} <br>
+        <strong>Servings: </strong> {{recipe?.yield}} <br><br>
+        <strong>Calories: </strong> {{this.calories}} <br><br>
+       
+          <strong> Ingredients: </strong>
+         <div class = "col-sm-6;" style="padding-left: 2em;">
+            <li *ngFor="let ing of recipe?.ingredientLines"> 
+                {{ ing }}
+            </li>
+            <br>
+            <a href="{{recipe?.source.sourceRecipeUrl}}">Step by step instructions</a>
+            </div>
+        </div>
+       
+      </div>
+  
+    </div>
+          
+
+

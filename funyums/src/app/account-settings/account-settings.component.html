@@ -12,16 +12,6 @@
  <div class = "row" style="font-family: 'Montserrat', sans-serif;font-size: 18px; line-height: 1.8; ">
 
   
-      <div class = "col-sm-2">
-        
-        <br>
-        <br>
-       
-        <br>
-        <a routerLink="/rewards"><p>Rewards</p></a>
-        
-      </div> 
-  
     
       <div class = "col-sm-6;" style="padding-left: 2em;">
         
@@ -33,14 +23,14 @@
           <div>
             <p>
               <strong>Username: </strong>
-              {{uname}}
+              {{this.person.email}}
             </p>
           </div>
 
           <div>
             <p>
-              <strong>Name (optional) : </strong>
-              {{name}}
+              <strong>Name: </strong>
+              {{this.person.fullname}}
             </p>
           </div>
 
@@ -54,18 +44,18 @@
 
           <div>
             <p>
-              <strong>Account Rank: </strong>
-              {{account_rank}}
+              <strong><a routerLink="/rewards">Account Rank:</a> </strong>
+              {{this.person.rank}}
             </p>
           </div>
 
           <div>
             <p>
-              <strong>Ingredients/Add Ingredient: </strong>
+              <strong>Ingredients: </strong>
               
             </p>
             <ul>
-              <li *ngFor="let ing of IngredientsString"> 
+              <li *ngFor="let ing of this.person.ingredients.split(',')"> 
                 {{ ing }}
               </li>
              </ul>
@@ -75,6 +65,7 @@
 
           </div>
 
+          <!-- 
           <div>
               <p>
                 <strong>Favorites </strong>
@@ -86,7 +77,7 @@
                </ul>
               
             </div>
-
+            -->
         </div>
       </div>
 </div>

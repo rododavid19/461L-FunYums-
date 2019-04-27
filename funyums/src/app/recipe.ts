@@ -38,6 +38,8 @@ export class Recipe {
     sourceSiteUrl: string,
     sourceRecipeUrl: string
   };
+  yield: string;
+  ingredientLines: string[];
 }
 
 export class RecipeImage {
@@ -46,6 +48,7 @@ export class RecipeImage {
   hostedLargeUrl?: string;
   imageUrlBySize?: any;
 }
+
 
 /*export const RECIPES: Recipe[] = [
   {

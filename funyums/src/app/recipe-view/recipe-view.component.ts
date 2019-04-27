@@ -22,6 +22,7 @@ export class RecipeViewComponent implements OnInit {
 
   showImage = false;
   imageURL: string;
+  calories: string;
   //images: RecipeImage[];
   //recipeObservable: Observable<Recipe>;
 
@@ -38,6 +39,7 @@ export class RecipeViewComponent implements OnInit {
     this.getter.getRecipeById(id).subscribe(recipe => {
       this.recipe = recipe;
       this.checkForImage(this.recipe.images);
+      this.checkForNutrition(this.recipe.nutritionEstimates);
     });
     //this.images = this.recipeObservable.pipe(map(res => res.images));
   }
@@ -60,5 +62,19 @@ export class RecipeViewComponent implements OnInit {
       }
     }
     this.showImage = false;
+  }
+
+  checkForNutrition(nutrition: any[]):void{
+    if(nutrition != null){
+      for(let entry of nutrition){
+        if(entry.attribute == "ENERC_KCAL"){
+          this.calories = entry.value;
+        }
+      }
+    }
+    if(this.calories == null){
+      this.calories = "No calorie data available";
+    }
+
   }
 }
