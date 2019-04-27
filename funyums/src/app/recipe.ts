@@ -40,6 +40,7 @@ export class Recipe {
   };
   yield: string;
   ingredientLines: string[];
+  id: string;
 }
 
 export class RecipeImage {

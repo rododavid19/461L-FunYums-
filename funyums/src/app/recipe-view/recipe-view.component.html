@@ -16,8 +16,10 @@
       <h1>{{recipe?.name}}</h1>
      
         <img src= "{{imageURL}}">
-
         <br><br>
+        <button *ngIf="this.displayFavoritesButton" style="background-color: black" class = "btn btn-primary" (click)="this.addFavorite()">Add to Favorites!</button>
+        <br><br>
+        
 
         <strong>Total time:</strong> {{recipe?.totalTime}} <br>
         <strong>Servings: </strong> {{recipe?.yield}} <br><br>
