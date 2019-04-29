@@ -57,6 +57,37 @@
         {{diet}}
       </button>
     </div>
+
+    <div>
+      <label for="name">Course Type</label>
+      &nbsp;
+      <select [(ngModel)] = "courseType">  <!-- <select [(ngModel)]="selectedLevel" (change)="selected()"> -->
+        <option>   </option>
+        <option> Main Dishes </option>
+        <option> Desserts </option>
+        <option> Side Dishes </option>
+        <option> Lunch</option>
+        <option> Appetizers </option>
+        <option> Salads </option>
+        <option> Breads </option>
+        <option> Breakfast</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="name2">Cuisine Type</label>
+      &nbsp;
+      <select [(ngModel)] = "cuisineType">  <!-- <select [(ngModel)]="selectedLevel" (change)="selected()"> -->
+        <option>   </option>
+        <option> American </option>
+        <option> Italian </option>
+        <option> Mexican </option>
+        <option> Indian</option>
+        <option> Chinese </option>
+      </select>
+    </div>
+
+
   </div>
 
 
@@ -71,10 +102,24 @@ More search options:
 - clear search criteria
 -->
 <br>
+<!-- 
 <div *ngIf="recipesShow">
   <div *ngFor="let recipe of recipes">
     <span><a routerLink="/recipe/{{recipe.id}}" (click)="saveLocalState()">{{recipe.recipeName}}</a></span>
   </div>
 </div>
+
+-->
+
+<div *ngIf="recipesShow">
+<ul>
+    <li *ngFor="let recipe of recipes | paginate: { itemsPerPage: 10, currentPage: p }"> 
+        <span><a routerLink="/recipe/{{recipe.id}}" (click)="saveLocalState()">{{recipe.recipeName}}</a></span>   
+    </li>
+  </ul>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
 </div>
 </div>

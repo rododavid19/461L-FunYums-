@@ -6,7 +6,9 @@ import {ValidatorService} from '../validator.service';
 @Component({
   selector: 'app-recipe-search',
   templateUrl: './recipe-search.component.html',
-  styleUrls: ['./recipe-search.component.css']
+  styleUrls: ['./recipe-search.component.css'],
+
+  
 })
 export class RecipeSearchComponent implements OnInit {
   /* todo
@@ -32,6 +34,8 @@ export class RecipeSearchComponent implements OnInit {
   initSearch: string;
   dietError = false;
   allergyError = false;
+  courseType: string;
+  cuisineType: string;
 
   constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService) { }
 
@@ -48,12 +52,14 @@ export class RecipeSearchComponent implements OnInit {
   }
 
   getRecipes(searchParams: string): void {
+    //console.log(this.courseType);
+
     this.initSearch = searchParams;
     console.log('Asking service for recipes with search parameters: ' + searchParams);
     const dietParams = this.prepDietSearch();
     console.log('using search params' + dietParams);
     const allergyParams = this.prepAllergySearch();
-    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams).subscribe(recipes => this.recipes = recipes);
+    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
     if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;

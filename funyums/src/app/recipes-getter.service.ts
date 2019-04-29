@@ -15,7 +15,7 @@ export class RecipesGetterService {
   result: SearchResult;
 
   constructor(private http: HttpClient) { }
-  getRecipes(searchParams: string, diets: string[], allergies: string[]): Observable<RecipeSearchBar[]> {
+  getRecipes(searchParams: string, diets: string[], allergies: string[], courseType: string, cuisineType: string): Observable<RecipeSearchBar[]> {
     let requestUrl = this.baseUrl + 's' + this.authentication;
     if (searchParams !== null && searchParams !== '') {
       console.log('Getting recipes from Yummly using the parameter ' + searchParams);
@@ -36,6 +36,15 @@ export class RecipesGetterService {
         console.log('Current url ' + requestUrl);
       }
     }
+    if(courseType != undefined && courseType != ""){
+     requestUrl += "&allowedCourse[]=course^course-" + courseType;
+    }
+    if(cuisineType != undefined && cuisineType != ""){
+      requestUrl += "&allowedCuisine[]=cuisine^cuisine-" + cuisineType.toLowerCase();
+    }
+
+    requestUrl += "&maxResult=50";
+
     console.log('Final url ' + requestUrl);
     return this.http.get<SearchResult>(requestUrl).pipe(map(res => res.matches));
   }

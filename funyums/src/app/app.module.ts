@@ -27,6 +27,8 @@ import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { StorageServiceModule, WebStorageService } from 'angular-webstorage-service';
 import { LogoutComponent } from './logout/logout.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 //import { CookieService } from 'ngx-cookie-service';
 
@@ -63,8 +65,9 @@ const ROUTES: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
-    StorageServiceModule
-  
+    StorageServiceModule,
+    NgxPaginationModule
+    
   
 
   ],
