@@ -3,6 +3,7 @@ import {person} from '../person';
 import { Router } from '@angular/router';
 import {AppComponent} from '../app.component';
 import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-account-settings',
@@ -18,6 +19,8 @@ export class AccountSettingsComponent implements OnInit {
   public person : person;
   ingredients: any;
   addThisIngredient:any;
+  oldIngredient:any;
+  newIngredient:any;
 
   constructor(private router: Router, private http:HttpClient) { }
 
@@ -90,10 +93,11 @@ export class AccountSettingsComponent implements OnInit {
       i++;
     }
     
-    i = 0;
+    i = 1;
     this.person.ingredients = new_ingred_list[0];
     while(i != new_ingred_list.length){
       this.person.ingredients += ("," + new_ingred_list[i]);
+      i++;
     }
 
     console.log(this.person.ingredients);
@@ -118,7 +122,7 @@ export class AccountSettingsComponent implements OnInit {
             });
 
 
-
+    AppComponent.saveInLocal("local",this.person);
 
   }
 
@@ -129,14 +133,14 @@ export class AccountSettingsComponent implements OnInit {
 
     this.person.ingredients += this.addThisIngredient + ",";
 
-    /*if(this.ingredients == null || this.ingredients == ""){ //if user does not have ingredients 
+    if(this.ingredients == null || this.ingredients == ""){ //if user does not have ingredients 
       this.ingredients = this.addThisIngredient;
       console.log(this.ingredients);
     }
     else { // if they have ingredients 
       this.ingredients = this.ingredients + ", "+this.addThisIngredient;
       console.log(this.ingredients);
-      */
+    }
 
       this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
             {
@@ -153,14 +157,55 @@ export class AccountSettingsComponent implements OnInit {
             
             },
             error  => {
-      
-
             });
 
-
-
-
+            AppComponent.saveInLocal("local",this.person);
     }
+
+
+
+    editIngredient(){
+
+      console.log(this.newIngredient);
+      var newIngredientsList = "";
+
+      for(let entry of this.person.ingredients.split(",")){
+        console.log(entry);
+        if(entry != undefined && entry != "" && entry != null){
+          if(entry == this.oldIngredient){
+            newIngredientsList += this.newIngredient + ",";
+          }
+          else{
+            newIngredientsList += entry + ",";
+          }
+        }
+       
+        
+      }
+
+      this.person.ingredients = newIngredientsList;
+
+      this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
+            {
+            "email"     :   this.person.email,
+            "rank"      :   this.person.rank,
+            "favorites" :   this.person.favorites,
+            "fullname"  :   this.person.fullname,
+            "ingredients":  this.person.ingredients
+            })
+            .subscribe(
+            data  => {
+            console.log("PATCH Request is successful ", data);
+        
+            
+            },
+            error  => {
+            });
+
+      AppComponent.saveInLocal("local",this.person);
+    }
+
+
     
 }
 

@@ -34,7 +34,7 @@ export class LoginService{
         clientID: 'zQCy4ml8CR4tPoiO22w25NTy8hP83c7R',
         domain: 'funyumslogin.auth0.com',
         responseType: 'token id_token',
-        redirectUri: 'http://localhost:4200/',//'http://localhost:4200/','http://www.funyums.net'
+        redirectUri: 'http://www.funyums.net',//'http://localhost:4200/','http://www.funyums.net'
         scope: 'openid profile email'
     });
 

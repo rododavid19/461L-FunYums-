@@ -66,6 +66,25 @@
             &nbsp;
             <button style="background-color: black" class = "btn btn-primary" (click)="this.removeIngredient()">Remove Ingredient</button>
 
+             <br><br><br>
+             
+
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="oldIngr">Old Ingredient</label>
+                  <input type="text" class="form-control" id="oldIngr" [(ngModel)] = "oldIngredient" name="old">
+                  <br>
+                  <button style="background-color: black" class = "btn btn-primary" (click)="this.editIngredient()">Edit Ingredient</button>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="newIngr">New Ingredient</label>
+                  <input type="text" class="form-control" id="newIngr" [(ngModel)] = "newIngredient" name="new">
+                </div>
+                
+              </div>
+            </form>
+
           </div>
 
           <!-- 

@@ -52,7 +52,7 @@
       </button>
     </div>
     <div *ngIf="dietsExist">
-      <label>Ingredients to exclude: </label>
+      <label>Diets to consider: </label>
       <button *ngFor="let diet of diets" (click)="removeDiet(diet)">
         {{diet}}
       </button>
