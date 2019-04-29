@@ -72,6 +72,56 @@ export class AccountSettingsComponent implements OnInit {
 
   }
 
+  removeIngredient(){
+    console.log(this.addThisIngredient);
+    console.log(this.ingredients);
+    
+    var ingred_list = this.person.ingredients.split(",");
+    var has_ingred = false;
+    var new_ingred_list = []
+    var i = 0;
+
+    while(i != ingred_list.length){
+      if (ingred_list[i] == this.addThisIngredient){
+        has_ingred = true;
+      }else{
+        new_ingred_list.push(ingred_list[i]); //add all ingredients except the one you are removing
+      }
+      i++;
+    }
+    
+    i = 0;
+    this.person.ingredients = new_ingred_list[0];
+    while(i != new_ingred_list.length){
+      this.person.ingredients += ("," + new_ingred_list[i]);
+    }
+
+    console.log(this.person.ingredients);
+
+      this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
+            {
+            "email"     :   this.person.email,
+            "rank"      :   this.person.rank,
+            "favorites" :   this.person.favorites,
+            "fullname"  :   this.person.fullname,
+            "ingredients":  this.person.ingredients
+            })
+            .subscribe(
+            data  => {
+            console.log("PATCH Request is successful ", data);
+        
+            
+            },
+            error  => {
+      
+
+            });
+
+
+
+
+  }
+
   addIngredient(){
     console.log(this.addThisIngredient);
     console.log(this.ingredients);
