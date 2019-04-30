@@ -1,5 +1,16 @@
-.threeDots:after {
-  content: '\2807';
-  font-size: 40px;
-  padding-bottom: 0;
+
+
+h1 {
+  color: navy;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  background-color: whitesmoke;
+  font-style: italic;
 }
+
+h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
