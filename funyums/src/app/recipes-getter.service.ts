@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import {Recipe, RecipeSearchBar, SearchResult} from './recipe';
 import {Observable, of } from 'rxjs';
 import {map} from 'rxjs/operators';
+import {AppComponent} from './app.component';
+import {person} from './person';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class RecipesGetterService {
   result: SearchResult;
 
   constructor(private http: HttpClient) { }
-  getRecipes(searchParams: string, diets: string[], allergies: string[], courseType: string, cuisineType: string): Observable<RecipeSearchBar[]> {
+  
+  getRecipes(searchParams: string, diets: string[], allergies: string[], courseType: string, cuisineType: string, requireIngredients: boolean, ings2exclude: string[]): Observable<RecipeSearchBar[]> {
     let requestUrl = this.baseUrl + 's' + this.authentication;
     if (searchParams !== null && searchParams !== '') {
       console.log('Getting recipes from Yummly using the parameter ' + searchParams);
@@ -42,6 +44,22 @@ export class RecipesGetterService {
     if(cuisineType != undefined && cuisineType != ""){
       requestUrl += "&allowedCuisine[]=cuisine^cuisine-" + cuisineType.toLowerCase();
     }
+
+    if(requireIngredients){
+      var person = AppComponent.getFromLocal("local");
+      for(let entry of person.ingredients.split(",")){
+        if(entry != null && entry != undefined && entry != "")
+          requestUrl += "&allowedIngredient[]=" + entry;
+      }
+    }
+
+    if(ings2exclude != null && ings2exclude.length > 0){
+      for(let entry of ings2exclude){
+        if(entry != null && entry != undefined && entry != "")
+          requestUrl += "&excludedIngredient[]=" + entry;
+      }
+    }
+
 
     requestUrl += "&maxResult=50";
 

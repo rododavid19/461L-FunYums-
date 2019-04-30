@@ -2,6 +2,8 @@
   import { Recipe } from '../recipe';
   import {RecipesGetterService} from '../recipes-getter.service';
   import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
+  import {AppComponent} from '../app.component';
+  import {person} from '../person';
 
 
   import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
@@ -18,6 +20,7 @@
 export class RecipeSubmitComponent implements OnInit {
 
   public recipesShow;
+  public person;
 
   public recipeName : String;
   public instructions : String;
@@ -56,13 +59,32 @@ export class RecipeSubmitComponent implements OnInit {
 
     },
     error  => {
+    });
+
+    
+    this.person = AppComponent.getFromLocal("local");
+    this.person.rank += 10;
+
+    this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
+            {
+            "email"     :   this.person.email,
+            "rank"      :   this.person.rank,
+            "favorites" :   this.person.favorites,
+            "fullname"  :   this.person.fullname,
+            "ingredients":  this.person.ingredients
+            })
+            .subscribe(
+            data  => {
+            console.log("PATCH Request is successful ", data);
+        
+            
+            },
+            error  => {
+            });
 
 
-    }
-
-    );
-
-
+   AppComponent.saveInLocal("local",this.person);
+   alert("Rank increased by 10 points!");
 
   }
 

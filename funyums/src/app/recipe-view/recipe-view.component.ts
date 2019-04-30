@@ -31,7 +31,7 @@ export class RecipeViewComponent implements OnInit {
   calories: string;
   //images: RecipeImage[];
   //recipeObservable: Observable<Recipe>;
-  public person : person;
+  public person;
 
   constructor(private getter: RecipesGetterService,
               private route: ActivatedRoute,private http:HttpClient) { }
@@ -98,6 +98,8 @@ export class RecipeViewComponent implements OnInit {
         this.person.favorites = "";
       }
     }
+
+    this.person.rank += 5;
 
     if(!this.person.favorites.includes(this.recipe.id)){
       this.person.favorites += "," + this.recipe.id;

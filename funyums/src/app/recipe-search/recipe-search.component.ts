@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
 import {ValidatorService} from '../validator.service';
+import {AppComponent} from '../app.component';
+import {person} from '../person';
+import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
+
 
 @Component({
   selector: 'app-recipe-search',
@@ -36,8 +41,10 @@ export class RecipeSearchComponent implements OnInit {
   allergyError = false;
   courseType: string;
   cuisineType: string;
+  checkBox: boolean = false;
+  displayCheckBox: boolean = false;
 
-  constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService) { }
+  constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService, private http: HttpClient) { }
 
   ngOnInit() {
     // init search bar
@@ -49,7 +56,15 @@ export class RecipeSearchComponent implements OnInit {
     if (this.initSearch !== '' && this.initSearch != null) {
       this.getRecipes(this.initSearch);
     }
+
+    this.displayCheckBox = false;
+    if(AppComponent.getFromLocal("local") != null){
+      this.displayCheckBox = true;
+    }
+
+
   }
+
 
   getRecipes(searchParams: string): void {
     //console.log(this.courseType);
@@ -59,7 +74,7 @@ export class RecipeSearchComponent implements OnInit {
     const dietParams = this.prepDietSearch();
     console.log('using search params' + dietParams);
     const allergyParams = this.prepAllergySearch();
-    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType).subscribe(recipes => this.recipes = recipes);
+    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType, this.displayCheckBox, this.ings2exclude).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
     if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
@@ -73,11 +88,31 @@ export class RecipeSearchComponent implements OnInit {
     if (ingName === '') {
       return;
     }
-    if (this.ings2excludeExist === false) {
-      this.ings2excludeExist = true;
-      this.ings2exclude = [];
+
+    this.http.get("http://backend-237004.appspot.com/api/ingredients2/"+ingName)
+    .subscribe(
+    data  => {
+    console.log("GET Request is successful ",data);
+    var x:any;
+    x = data;
+    console.log(x.length);  
+
+    if(x.length > 0){
+
+    
+      if (this.ings2excludeExist === false) {
+        this.ings2excludeExist = true;
+        this.ings2exclude = [];
+      }
+      this.ings2exclude.push(ingName);
     }
-    this.ings2exclude.push(ingName);
+
+    },
+    error  => {
+
+    });
+
+    
   }
 
   removeIng(ingName: string): void {
@@ -176,4 +211,14 @@ export class RecipeSearchComponent implements OnInit {
     }
     return null;
   }
+
+  checked(){
+    if(this.checkBox){
+      this.checkBox = false;
+    }
+    else{
+      this.checkBox = true;
+    }
+  }
+
 }

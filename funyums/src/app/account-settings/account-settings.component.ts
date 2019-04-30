@@ -79,6 +79,10 @@ export class AccountSettingsComponent implements OnInit {
     console.log(this.addThisIngredient);
     console.log(this.ingredients);
     
+    if(this.addThisIngredient != null && this.addThisIngredient != undefined && this.addThisIngredient != ""){
+
+    
+
     var ingred_list = this.person.ingredients.split(",");
     var has_ingred = false;
     var new_ingred_list = []
@@ -123,6 +127,7 @@ export class AccountSettingsComponent implements OnInit {
 
 
     AppComponent.saveInLocal("local",this.person);
+  }
 
   }
 
@@ -131,81 +136,142 @@ export class AccountSettingsComponent implements OnInit {
     console.log(this.ingredients);
     
 
-    this.person.ingredients += this.addThisIngredient + ",";
+    if(this.addThisIngredient != null && this.addThisIngredient != undefined && this.addThisIngredient != ""){
 
-    if(this.ingredients == null || this.ingredients == ""){ //if user does not have ingredients 
-      this.ingredients = this.addThisIngredient;
-      console.log(this.ingredients);
-    }
-    else { // if they have ingredients 
-      this.ingredients = this.ingredients + ", "+this.addThisIngredient;
-      console.log(this.ingredients);
-    }
 
-      this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
-            {
-            "email"     :   this.person.email,
-            "rank"      :   this.person.rank,
-            "favorites" :   this.person.favorites,
-            "fullname"  :   this.person.fullname,
-            "ingredients":  this.person.ingredients
-            })
-            .subscribe(
-            data  => {
-            console.log("PATCH Request is successful ", data);
-        
+      this.http.get("http://backend-237004.appspot.com/api/ingredients2/"+this.addThisIngredient)
+      .subscribe(
+      data  => {
+      console.log("GET Request is successful ",data);
+      var x:any;
+      x = data;
+      console.log(x.length);  
+  
+      if(x.length > 0){
+        this.person.ingredients += this.addThisIngredient + ",";
+
+        if(this.ingredients == null || this.ingredients == ""){ //if user does not have ingredients 
+          this.ingredients = this.addThisIngredient;
+          console.log(this.ingredients);
+        }
+        else { // if they have ingredients 
+          this.ingredients = this.ingredients + ", "+this.addThisIngredient;
+          console.log(this.ingredients);
+        }
+    
+          this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
+                {
+                "email"     :   this.person.email,
+                "rank"      :   this.person.rank,
+                "favorites" :   this.person.favorites,
+                "fullname"  :   this.person.fullname,
+                "ingredients":  this.person.ingredients
+                })
+                .subscribe(
+                data  => {
+                console.log("PATCH Request is successful ", data);
             
-            },
-            error  => {
-            });
+                
+                },
+                error  => {
+                });
+    
+                AppComponent.saveInLocal("local",this.person);
+  
+      }
+  
+      },
+      error  => {
+  
+      });
 
-            AppComponent.saveInLocal("local",this.person);
-    }
+    
+          }
 
-
+        }
 
     editIngredient(){
+      if(this.oldIngredient != null && this.oldIngredient != undefined && this.oldIngredient != "" &&
+      this.newIngredient != null && this.newIngredient != undefined && this.newIngredient != ""){
 
-      console.log(this.newIngredient);
-      var newIngredientsList = "";
 
-      for(let entry of this.person.ingredients.split(",")){
-        console.log(entry);
-        if(entry != undefined && entry != "" && entry != null){
-          if(entry == this.oldIngredient){
-            newIngredientsList += this.newIngredient + ",";
-          }
-          else{
-            newIngredientsList += entry + ",";
-          }
-        }
-       
-        
-      }
 
-      this.person.ingredients = newIngredientsList;
+        this.http.get("http://backend-237004.appspot.com/api/ingredients2/"+this.newIngredient)
+        .subscribe(
+        data  => {
+        console.log("GET Request is successful ",data);
+        var x:any;
+        x = data;
+        console.log(x.length);  
 
-      this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
-            {
-            "email"     :   this.person.email,
-            "rank"      :   this.person.rank,
-            "favorites" :   this.person.favorites,
-            "fullname"  :   this.person.fullname,
-            "ingredients":  this.person.ingredients
-            })
-            .subscribe(
-            data  => {
-            console.log("PATCH Request is successful ", data);
-        
+        if(x.length > 0){
+          console.log(this.newIngredient);
+          var newIngredientsList = "";
+    
+          for(let entry of this.person.ingredients.split(",")){
+            console.log(entry);
+            if(entry != undefined && entry != "" && entry != null){
+              if(entry == this.oldIngredient){
+                newIngredientsList += this.newIngredient + ",";
+              }
+              else{
+                newIngredientsList += entry + ",";
+              }
+            }
+           
             
-            },
-            error  => {
-            });
+          }
+    
+          this.person.ingredients = newIngredientsList;
+    
+          this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
+                {
+                "email"     :   this.person.email,
+                "rank"      :   this.person.rank,
+                "favorites" :   this.person.favorites,
+                "fullname"  :   this.person.fullname,
+                "ingredients":  this.person.ingredients
+                })
+                .subscribe(
+                data  => {
+                console.log("PATCH Request is successful ", data);
+            
+                
+                },
+                error  => {
+                });
+    
+          AppComponent.saveInLocal("local",this.person);
 
-      AppComponent.saveInLocal("local",this.person);
+
+    
+  
+        }
+
+        },
+        error  => {
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
     }
 
-
+  }
     
 }
 
