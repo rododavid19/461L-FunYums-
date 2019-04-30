@@ -43,6 +43,7 @@ export class RecipeSearchComponent implements OnInit {
   cuisineType: string;
   checkBox: boolean = false;
   displayCheckBox: boolean = false;
+  ingredientError = false;
 
   constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService, private http: HttpClient) { }
 
@@ -74,7 +75,7 @@ export class RecipeSearchComponent implements OnInit {
     const dietParams = this.prepDietSearch();
     console.log('using search params' + dietParams);
     const allergyParams = this.prepAllergySearch();
-    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType, this.displayCheckBox, this.ings2exclude).subscribe(recipes => this.recipes = recipes);
+    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType, this.checkBox, this.ings2exclude).subscribe(recipes => this.recipes = recipes);
       // need to add a condition for undefined
     if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
@@ -98,13 +99,16 @@ export class RecipeSearchComponent implements OnInit {
     console.log(x.length);  
 
     if(x.length > 0){
-
+      this.ingredientError = false;
     
       if (this.ings2excludeExist === false) {
         this.ings2excludeExist = true;
         this.ings2exclude = [];
       }
       this.ings2exclude.push(ingName);
+    }
+    else{
+      this.ingredientError = true;
     }
 
     },
@@ -131,6 +135,7 @@ export class RecipeSearchComponent implements OnInit {
     const validated = this.validator.validateAllergy(allergyName);
     if ( validated == null) {
       this.allergyError = true;
+      console.log("here");
       return;
     }
     if (this.allergiesExist === false) {

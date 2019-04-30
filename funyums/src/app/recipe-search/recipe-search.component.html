@@ -28,6 +28,7 @@
     <label>Do not show me recipes with: </label>
     <input #excluded_ing type="text" (keyup.enter)="addIng(excluded_ing.value)">
     <button (click)="addIng(excluded_ing.value)">Add</button>
+    <p *ngIf="ingredientError" style="color: red;">Invalid Ingredient. Try pluralizing!</p>
     <br>
     <label>Only show recipes that accommodate an allergy to: </label>
     <input #allergies_inp type="text" (keyup.enter)="addAllergy(allergies_inp.value)">

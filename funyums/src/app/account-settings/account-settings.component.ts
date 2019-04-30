@@ -21,6 +21,9 @@ export class AccountSettingsComponent implements OnInit {
   addThisIngredient:any;
   oldIngredient:any;
   newIngredient:any;
+  invalidIngredient:boolean = false;
+  invalidNewIngredient:boolean = false;
+
 
   constructor(private router: Router, private http:HttpClient) { }
 
@@ -177,7 +180,11 @@ export class AccountSettingsComponent implements OnInit {
                 });
     
                 AppComponent.saveInLocal("local",this.person);
-  
+                this.invalidIngredient = false;
+
+      }
+      else{
+        this.invalidIngredient = true;
       }
   
       },
@@ -245,7 +252,10 @@ export class AccountSettingsComponent implements OnInit {
 
 
     
-  
+          this.invalidNewIngredient = false;
+        }
+        else{
+          this.invalidNewIngredient = true;
         }
 
         },
