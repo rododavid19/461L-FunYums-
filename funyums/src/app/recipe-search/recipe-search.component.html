@@ -42,19 +42,19 @@
     <br>
     <div *ngIf="ings2excludeExist">
       <label>Ingredients to exclude: </label>
-      <button *ngFor="let ing of ings2exclude" (click)="removeIng(ing)">
+      <button  class="removable" *ngFor="let ing of ings2exclude" (click)="removeIng(ing)">
         {{ing}}
       </button>
     </div>
     <div *ngIf="allergiesExist">
       <label>Allergies to consider: </label>
-      <button *ngFor="let alg of allergies" (click)="removeAllergy(alg)">
+      <button class="removable" *ngFor="let alg of allergies" (click)="removeAllergy(alg)">
         {{alg}}
       </button>
     </div>
     <div *ngIf="dietsExist">
       <label>Diets to consider: </label>
-      <button *ngFor="let diet of diets" (click)="removeDiet(diet)">
+      <button class="removable" *ngFor="let diet of diets" (click)="removeDiet(diet)">
         {{diet}}
       </button>
     </div>
