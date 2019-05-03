@@ -3,9 +3,8 @@ import { RecipeSearchBar } from '../recipe';
 import {RecipesGetterService} from '../recipes-getter.service';
 import {ValidatorService} from '../validator.service';
 import {AppComponent} from '../app.component';
-import {person} from '../person';
-import {HttpClient,HttpResponse,HttpRequest,HttpHeaders} from '@angular/common/http';
-import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import {HttpClient} from '@angular/common/http';
+import {allergyList, dietList, ingList} from './fileInputs';
 
 
 @Component({
@@ -13,7 +12,7 @@ import { jsonpCallbackContext } from '@angular/common/http/src/module';
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.css'],
 
-  
+
 })
 export class RecipeSearchComponent implements OnInit {
 
@@ -21,22 +20,15 @@ export class RecipeSearchComponent implements OnInit {
   recipes: RecipeSearchBar[];
   recipesShow = false;
   showAdvance = false;
-  onlyMyIng = false;
-  ings2excludeExist = false;
-  ings2exclude: string[];
-  allergiesExist = false;
-  allergies: string[];
-  dietsExist = false;
-  diets: string[];
   initSearch: string;
-  dietError = false;
-  allergyError = false;
   courseType: string;
   cuisineType: string;
-  checkBox: boolean = false;
-  displayCheckBox: boolean = false;
-  ingredientError = false;
+  checkBox = false;
+  displayCheckBox = false;
 
+  ingredient_list: ingList;
+  diet_list: dietList;
+  allergy_list: allergyList;
   constructor(private recipeGetter: RecipesGetterService, private validator: ValidatorService, private http: HttpClient) { }
 
   ngOnInit() {
@@ -51,24 +43,23 @@ export class RecipeSearchComponent implements OnInit {
     }
 
     this.displayCheckBox = false;
-    if(AppComponent.getFromLocal("local") != null){
+    if (AppComponent.getFromLocal('local') != null) {
       this.displayCheckBox = true;
     }
 
-
+    this.ingredient_list = new ingList(this.validator);
+    this.diet_list = new dietList(this.validator);
+    this.allergy_list = new allergyList(this.validator);
   }
 
 
   getRecipes(searchParams: string): void {
-    //console.log(this.courseType);
-
     this.initSearch = searchParams;
     console.log('Asking service for recipes with search parameters: ' + searchParams);
-    const dietParams = this.prepDietSearch();
+    const dietParams = this.diet_list.prepSearch();
     console.log('using search params' + dietParams);
-    const allergyParams = this.prepAllergySearch();
-    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType, this.checkBox, this.ings2exclude).subscribe(recipes => this.recipes = recipes);
-      // need to add a condition for undefined
+    const allergyParams = this.allergy_list.prepSearch();
+    this.recipeGetter.getRecipes(searchParams, dietParams, allergyParams, this.courseType, this.cuisineType, this.checkBox, this.ingredient_list.list).subscribe(recipes => this.recipes = recipes);
     if (this.recipes != null && this.recipes.length === 0 ) {
         this.recipesShow = false;
       } else {
@@ -76,146 +67,43 @@ export class RecipeSearchComponent implements OnInit {
       }
     }
 
-  // this also needs to make sure that the input is valid
-  addIng(ingName: string): void {
-    if (ingName === '') {
-      return;
-    }
-
-    this.http.get("http://backend-237004.appspot.com/api/ingredients2/"+ingName)
-    .subscribe(
-    data  => {
-    console.log("GET Request is successful ",data);
-    var x:any;
-    x = data;
-    console.log(x.length);  
-
-    if(x.length > 0){
-      this.ingredientError = false;
-    
-      if (this.ings2excludeExist === false) {
-        this.ings2excludeExist = true;
-        this.ings2exclude = [];
-      }
-      this.ings2exclude.push(ingName);
-    }
-    else{
-      this.ingredientError = true;
-    }
-
-    },
-    error  => {
-
-    });
-
-    
-  }
-
-  removeIng(ingName: string): void {
-    const indx = this.ings2exclude.indexOf(ingName);
-    this.ings2exclude.splice(indx, 1);
-    if (this.ings2exclude.length === 0) {
-      this.ings2excludeExist = false;
-    }
-  }
-
-  // this also needs to make sure that the input is valid
-  addAllergy(allergyName: string): void {
-    if (allergyName === '') {
-      return;
-    }
-    const validated = this.validator.validateAllergy(allergyName);
-    if ( validated == null) {
-      this.allergyError = true;
-      console.log("here");
-      return;
-    }
-    if (this.allergiesExist === false) {
-      this.allergiesExist = true;
-      this.allergies = [];
-    }
-    this.allergyError = false;
-    this.allergies.push(validated[0]);
-  }
-
-  removeAllergy(allergyName: string): void {
-    const indx = this.allergies.indexOf(allergyName);
-    this.allergies.splice(indx, 1);
-    if (this.allergies.length === 0) {
-      this.allergiesExist = false;
-    }
-  }
-
-  // this also needs to make sure that the input is valid
-  addDiet(dietName: string): void {
-    if (dietName === '') {
-      return;
-    }
-    const validated = this.validator.validateDiet(dietName);
-    if ( validated == null) {
-      this.dietError = true;
-      return;
-    }
-    if (this.dietsExist === false) {
-      this.dietsExist = true;
-      this.diets = [];
-    }
-    this.dietError = false;
-    this.diets.push(validated[0]);
-  }
-
-  removeDiet(dietName: string): void {
-    const indx = this.diets.indexOf(dietName);
-    this.diets.splice(indx, 1);
-    if (this.diets.length === 0) {
-      this.dietsExist = false;
-    }
-  }
-
   saveLocalState(): void {
     if (this.initSearch !== '') {
       localStorage.removeItem('SearchBar');
       localStorage.setItem('SearchBar', JSON.stringify(this.initSearch));
-      // localStorage.removeItem('diets');
-      // localStorage.setItem('diets', JSON.stringify(this.diets));
     }
   }
 
-  prepDietSearch(): string[] {
-    if (this.dietsExist !== false) {
-      if ( this.diets.length !== 0) {
-        const dietParams = [];
-        for ( const diet of this.diets) {
-          const realParam = this.validator.validateDiet(diet)[1];
-          dietParams.push(realParam);
-        }
-        return dietParams;
-      }
-    }
-    return null;
-  }
-
-  prepAllergySearch(): string[] {
-    if (this.allergiesExist !== false) {
-      if ( this.allergies.length !== 0) {
-        const allergiesParams = [];
-        for ( const allergy of this.allergies) {
-          const realParam = this.validator.validateAllergy(allergy)[1];
-          allergiesParams.push(realParam);
-        }
-        return allergiesParams;
-      }
-    }
-    return null;
-  }
-
-  checked(){
-    if(this.checkBox){
+  checked() {
+    if (this.checkBox) {
       this.checkBox = false;
-    }
-    else{
+    } else {
       this.checkBox = true;
     }
   }
 
+  addIng(name: string): void {
+    let nm;
+    if (name !== '') {
+      this.http.get('http://backend-237004.appspot.com/api/ingredients2/' + name)
+        .subscribe(
+          data  => {
+            console.log('GET Request is successful ', data);
+            let x: any;
+            x = data;
+            if (x.length > 0) {
+              this.ingredient_list.error = false;
+              nm = name;
+              this.ingredient_list.addToList(name);
+            } else {
+              this.ingredient_list.error = true;
+              nm = null;
+            }
+          },
+          error  => {
+
+          });
+    } else { nm = null; }
+  }
 }
+

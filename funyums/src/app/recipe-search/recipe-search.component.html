@@ -28,33 +28,33 @@
     <label>Do not show me recipes with: </label>
     <input #excluded_ing type="text" (keyup.enter)="addIng(excluded_ing.value)">
     <button (click)="addIng(excluded_ing.value)">Add</button>
-    <p *ngIf="ingredientError" style="color: red;">Invalid Ingredient. Try pluralizing!</p>
+    <p *ngIf="ingredient_list.error" style="color: red;">Invalid Ingredient. Try pluralizing!</p>
     <br>
     <label>Only show recipes that accommodate an allergy to: </label>
-    <input #allergies_inp type="text" (keyup.enter)="addAllergy(allergies_inp.value)">
-    <button (click)="addAllergy(allergies_inp.value)">Add</button>
-    <p *ngIf="allergyError" style="color: red;">Invalid Allergy</p>
+    <input #allergies_inp type="text" (keyup.enter)="this.allergy_list.addToList(allergies_inp.value)">
+    <button (click)="this.allergy_list.addToList(allergies_inp.value)">Add</button>
+    <p *ngIf="this.allergy_list.error" style="color: red;">Invalid Allergy</p>
     <br>
     <label>Only show recipes that accommodate to these diets: </label>
-    <input #diets_inp type="text" (keyup.enter)="addDiet(diets_inp.value)">
-    <button (click)="addDiet(diets_inp.value)">Add</button>
-    <p *ngIf="dietError" style="color: red;">Invalid diet</p>
+    <input #diets_inp type="text" (keyup.enter)="this.diet_list.addToList(diets_inp.value)">
+    <button (click)="this.diet_list.addToList(diets_inp.value)">Add</button>
+    <p *ngIf="this.diet_list.error" style="color: red;">Invalid diet</p>
     <br>
-    <div *ngIf="ings2excludeExist">
+    <div *ngIf="this.ingredient_list.exists">
       <label>Ingredients to exclude: </label>
-      <button  class="removable" *ngFor="let ing of ings2exclude" (click)="removeIng(ing)">
+      <button  class="removable" *ngFor="let ing of this.ingredient_list.list" (click)="this.ingredient_list.removeFromList(ing)">
         {{ing}}
       </button>
     </div>
-    <div *ngIf="allergiesExist">
+    <div *ngIf="this.allergy_list.exists">
       <label>Allergies to consider: </label>
-      <button class="removable" *ngFor="let alg of allergies" (click)="removeAllergy(alg)">
+      <button class="removable" *ngFor="let alg of this.allergy_list.list" (click)="this.allergy_list.removeFromList(alg)">
         {{alg}}
       </button>
     </div>
-    <div *ngIf="dietsExist">
+    <div *ngIf="this.diet_list.exists">
       <label>Diets to consider: </label>
-      <button class="removable" *ngFor="let diet of diets" (click)="removeDiet(diet)">
+      <button class="removable" *ngFor="let diet of this.diet_list.list" (click)="this.diet_list.removeFromList(diet)">
         {{diet}}
       </button>
     </div>
