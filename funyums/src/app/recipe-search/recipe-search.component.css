@@ -1,0 +1,9 @@
+.removable {
+  background-color: transparent;
+  color: midnightblue;
+}
+
+.removable:hover {
+  color: red;
+  text-decoration: line-through;
+}

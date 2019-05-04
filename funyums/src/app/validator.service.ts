@@ -15,10 +15,6 @@ export class ValidatorService {
 
   constructor(private http: HttpClient) { }
 
-  // todo
-  validateIngredients(name: string): string{
-    return null;
-  }
 
   validateDiet(name: string): string[]{
     name = name.toLowerCase();
