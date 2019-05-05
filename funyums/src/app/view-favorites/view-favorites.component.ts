@@ -105,7 +105,7 @@ export class ViewFavoritesComponent implements OnInit {
 
 
 
-    for(var i = 1; i < this.warning_flags.length; i++){
+    for(var i = 0; i < this.warning_flags.length-1; i++){
 
       this.httpClient.get('http://api.yummly.com/v1/api/recipe/' + recipeID[i] + '?_app_id=dae14cbd&_app_key=993954829f8356d54ca793f29ea9a14b')
         .subscribe(
@@ -133,7 +133,8 @@ export class ViewFavoritesComponent implements OnInit {
 
     if(this.User.favorites.includes(id)){
 
-      this.User.favorites = this.User.favorites.replace( id , "");
+      this.User.favorites = this.User.favorites.replace( id + "," , "");
+      console.log("delteing: " + id)
       this.httpClient.patch("http://backend-237004.appspot.com/api/username_password/"+this.User.email,
         {
           "email"     :   this.User.email,
@@ -159,6 +160,7 @@ export class ViewFavoritesComponent implements OnInit {
     }
 
     AppComponent.saveInLocal("local",this.User);
+    console.log("new local " + this.User.favorites)
 
 
 

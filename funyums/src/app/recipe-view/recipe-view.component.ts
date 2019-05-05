@@ -102,7 +102,7 @@ export class RecipeViewComponent implements OnInit {
     this.person.rank += 5;
 
     if(!this.person.favorites.includes(this.recipe.id)){
-      this.person.favorites += "," + this.recipe.id;
+      this.person.favorites += this.recipe.id + ",";
       this.http.patch("http://backend-237004.appspot.com/api/username_password/"+this.person.email,
       {
       "email"     :   this.person.email,
@@ -115,7 +115,7 @@ export class RecipeViewComponent implements OnInit {
       data  => {
       console.log("PATCH Request is successful ", data);
       alert("Recipe Added!");
-    
+
       },
       error  => {
 
@@ -127,7 +127,6 @@ export class RecipeViewComponent implements OnInit {
   }
 
   AppComponent.saveInLocal("local",this.person);
-
 
 
   }

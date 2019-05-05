@@ -41,29 +41,29 @@ export class LoginService{
     get accessToken(): string {
         return this._accessToken;
       }
-    
+
       get idToken(): string {
         return this._idToken;
       }
-    
+
       public login(): void {
         this.auth0.authorize();
-        
+
       }
 
       public handleAuthentication(): void {
-        
+
         this.auth0.parseHash((err, authResult) => {
-            
+
           if (authResult && authResult.accessToken && authResult.idToken) {
             window.location.hash = '';
             this.localLogin(authResult);
             AppComponent.displayLogin = false;
             AppComponent.displayLogout = true;
-            
+
             console.log(authResult.idTokenPayload.email);
 
-            
+
 
         this.getData(authResult.idTokenPayload.email)
         .subscribe(data => this.person=data[0], error => {}, () => {
@@ -88,27 +88,27 @@ export class LoginService{
             .subscribe(
             data  => {
             console.log("POST Request is successful ", data);
-        
-            
+
+
             },
             error  => {
-      
+
 
             }
-      
+
             );
 
         }
         else{
             console.log("Previous user logged in")
-            
+
 
         }
 
         AppComponent.saveInLocal("local",this.person);
         this.router.navigateByUrl("/splash");
 
-        
+
       });
 
 
@@ -129,7 +129,7 @@ export class LoginService{
           } else if (err) {
             console.log(err);
 
-            
+
           }
           else{
               if(authResult!=null){
@@ -137,11 +137,11 @@ export class LoginService{
                 console.log(authResult.accessToken);
                 console.log(authResult.idToken);
               }
-             
+
           }
         });
       }
-    
+
       private localLogin(authResult): void {
         // Set the time that the access token will expire at
         const expiresAt = (authResult.expiresIn * 1000) + Date.now();
@@ -152,11 +152,11 @@ export class LoginService{
         console.log(this._accessToken);
         console.log(this._idToken);
         console.log(this._expiresAt);
-         
+
 
 
       }
-    
+
       public renewTokens(): void {
         this.auth0.checkSession({}, (err, authResult) => {
           if (authResult && authResult.accessToken && authResult.idToken) {
@@ -167,22 +167,22 @@ export class LoginService{
           }
         });
       }
-    
+
       public logout(): void {
         // Remove tokens and expiry time
         this._accessToken = '';
         this._idToken = '';
         this._expiresAt = 0;
-        
+
         this.auth0.logout({
           return_to: window.location.origin
         });
       }
-    
+
       public isAuthenticated(): boolean {
         // Check whether the current time is past the
         // access token's expiry time
         return this._accessToken && Date.now() < this._expiresAt;
       }
-    
+
 }
