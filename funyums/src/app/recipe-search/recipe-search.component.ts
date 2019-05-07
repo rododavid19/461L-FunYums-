@@ -100,9 +100,7 @@ export class RecipeSearchComponent implements OnInit {
               nm = null;
             }
           },
-          error  => {
-
-          });
+          error  => {});
     } else { nm = null; }
   }
 }

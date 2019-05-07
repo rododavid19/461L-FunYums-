@@ -56,6 +56,8 @@ export class dietList extends filterInputs {
     if (this.validator.validateDiet(name) == null) {
       this.error = true;
       return null;
+    } else {
+      this.error = false;
     }
     return this.validator.validateDiet(name);
   }
@@ -67,6 +69,8 @@ export class allergyList extends filterInputs {
     if (this.validator.validateAllergy(name) == null) {
       this.error = true;
       return null;
+    } else {
+      this.error = false;
     }
     return this.validator.validateAllergy(name);
   }
