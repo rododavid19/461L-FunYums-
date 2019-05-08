@@ -38,9 +38,7 @@ export class RecipeSearchComponent implements OnInit {
     if (this.initSearch === undefined) {
       this.initSearch = '';
     }
-    if (this.initSearch !== '' && this.initSearch != null) {
-      this.getRecipes(this.initSearch);
-    }
+
 
     this.displayCheckBox = false;
     if (AppComponent.getFromLocal('local') != null) {
@@ -50,6 +48,10 @@ export class RecipeSearchComponent implements OnInit {
     this.ingredient_list = new ingList(this.validator);
     this.diet_list = new dietList(this.validator);
     this.allergy_list = new allergyList(this.validator);
+
+    if (this.initSearch != '' && this.initSearch != null) {
+      this.getRecipes(this.initSearch);
+    }
   }
 
 
